@@ -1,0 +1,26 @@
+<footer class="bg-white border-t border-black/5 py-16">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+      <img src="<%= site.logo.main %>" alt="<%= site.name %>" class="h-12 w-auto">
+
+      <div class="flex flex-col md:items-end gap-2 text-center md:text-right">
+        <span class="text-xs font-bold text-ink/40 uppercase tracking-widest mb-2">Our Official Channels</span>
+        <div class="flex items-center gap-4">
+          <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-whatsapp text-white rounded-lg flex items-center justify-center shadow-lg shadow-whatsapp/20" aria-label="WhatsApp">W</a>
+          <a href="tel:<%= site.contact.phone.replace(/\s/g, '') %>" class="w-10 h-10 bg-ink text-white rounded-lg flex items-center justify-center shadow-lg" aria-label="Phone">P</a>
+          <a href="mailto:<%= site.contact.email %>" class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center shadow-lg shadow-primary/20" aria-label="Email">@</a>
+        </div>
+        <p class="text-xs text-ink/40 mt-4 max-w-xs">
+          <%= site.office.label %>: <%= site.office.address %><br>
+          Open: <%= site.office.hours %> &bull; Phone: <%= site.contact.phone %>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-ink/30 text-[10px] font-medium tracking-tight">
+        &copy; <%= new Date().getFullYear() %> PATTAYA RENT A BIKE. PART OF THE PATTAYA RENT A CAR GROUP.
+      </p>
+    </div>
+  </div>
+</footer>

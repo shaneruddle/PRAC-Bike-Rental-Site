@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "pattaya-rent-a-car-rebuild"
+  },
+  "targets": {
+    "pattaya-rent-a-car-rebuild": {
+      "hosting": {
+        "bike-rental": ["prac-bike-rental"]
+      }
+    }
+  }
+}

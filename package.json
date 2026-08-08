@@ -1,0 +1,21 @@
+{
+  "name": "prac-bike-rental",
+  "version": "1.0.0",
+  "description": "Static marketing site for Pattaya Rent a Bike.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "node scripts/build.js && npx tailwindcss -i src/styles/main.css -o dist/assets/css/main.css",
+    "start": "node scripts/server.js"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "fs-extra": "^11.3.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0"
+  }
+}
