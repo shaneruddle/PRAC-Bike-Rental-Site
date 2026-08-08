@@ -17,9 +17,20 @@
           { "key": "X-Content-Type-Options", "value": "nosniff" }
         ]
       }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/contact",
+        "function": {
+          "functionId": "contactForm",
+          "region": "asia-southeast1"
+        }
+      }
     ]
   },
   "functions": {
-    "source": "functions"
+    "source": "functions",
+    "codebase": "bike-rental",
+    "runtime": "nodejs20"
   }
 }
