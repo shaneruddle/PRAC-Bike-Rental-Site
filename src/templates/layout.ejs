@@ -28,6 +28,17 @@
 <!-- Canonical -->
 <link rel="canonical" href="https://<%= site.domain %>/">
 
+<!-- Google tag (gtag.js) - GA4 + Google Ads (same property as the booking engine) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8FHJNX2F1T"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('set', 'linker', { 'domains': ['pattayarentabike.com', 'app.pattayarentacar.com', 'www.pattayarentacar.com'] });
+gtag('config', 'G-8FHJNX2F1T');
+gtag('config', 'AW-806173499');
+</script>
+
 <!-- Styling -->
 <link rel="stylesheet" href="/assets/css/main.css?v=<%= buildId %>">
 <link rel="icon" type="image/jpeg" href="https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/PRAB-Icon.jpg?alt=media&token=bef9127c-502f-4f4a-bfe5-038fef2839ba">

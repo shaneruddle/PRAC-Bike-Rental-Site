@@ -128,8 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const to = elReturnInput.value;
             const pickupTime = (elPickupTimeInput && elPickupTimeInput.value) || "09:30";
             const dropoffTime = (elReturnTimeInput && elReturnTimeInput.value) || "09:30";
-            // Redirect to the booking engine in bike mode: from/to dates + times (no location at this stage)
-            window.location.href = `https://app.pattayarentacar.com/rent-a-bike?from=${from}&to=${to}&pickupTime=${pickupTime}&dropoffTime=${dropoffTime}`;
+            // GA4: count the handoff to the booking engine as the site's primary lead event
+            if (typeof gtag === 'function') {
+                gtag('event', 'search_bikes', { from: from, to: to });
+            }
+            // Redirect to the booking engine in bike mode: from/to dates + times (no location at
+            // this stage). UTM-tagged so enquiries/bookings are attributed to the bike site in the
+            // CRM (the engine stores utm_source on every enquiry) and in GA4.
+            window.location.href = `https://app.pattayarentacar.com/rent-a-bike?from=${from}&to=${to}&pickupTime=${pickupTime}&dropoffTime=${dropoffTime}&utm_source=pattayarentabike&utm_medium=site_handoff`;
         }
 
         document.getElementById('dp-apply').addEventListener('click', () => {
