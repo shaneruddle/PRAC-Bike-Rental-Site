@@ -33,7 +33,7 @@ export const fleet = [
     daily: 200,
     monthly: 2500,
     image:
-      "https://s3.amazonaws.com/appforest_uf/f1644739729154x858582174759234400/Yamaha-GT125-COC-2017-1200x800.jpg",
+      "https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/bikes%2Fgt125.png?alt=media&token=dedd1e41-1af9-411f-853b-aefc8f42a86a",
   },
   {
     name: "Yamaha Nmax",
@@ -42,7 +42,7 @@ export const fleet = [
     daily: 300,
     monthly: 4000,
     image:
-      "https://s3.amazonaws.com/appforest_uf/f1644134407929x212999443498537600/line-up-nmax-2018-blue-001.png",
+      "https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/bikes%2Fnmax.png?alt=media&token=4ef6c22c-3467-4c35-a51e-0650bfe41234",
   },
   {
     name: "Honda PCX",
@@ -50,7 +50,7 @@ export const fleet = [
     transmission: "Auto",
     daily: 300,
     monthly: 4000,
-    image: "https://s3.amazonaws.com/appforest_uf/f1644134580526x939476663009441300/Honda%20PCX.jpg",
+    image: "https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/bikes%2Fpcx.png?alt=media&token=237afcdb-1e04-4b2f-9428-6526566d89fe",
   },
   {
     name: "Yamaha Aerox",
@@ -59,7 +59,7 @@ export const fleet = [
     daily: 300,
     monthly: 4000,
     image:
-      "https://s3.amazonaws.com/appforest_uf/f1646789114929x906797731097722600/yamaha-aerox-155-%E0%B9%81%E0%B8%94%E0%B8%87-%E0%B9%80%E0%B8%97%E0%B8%B2-%281%29.png",
+      "https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/bikes%2Faerox.png?alt=media&token=cb19420f-5c66-4e7e-b3e0-736cd32252f0",
   },
 ];
 

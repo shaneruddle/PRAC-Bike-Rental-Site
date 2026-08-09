@@ -6,8 +6,8 @@
   --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  --color-primary: #F07D17;
-  --color-primary-hover: #D76C0F;
+  --color-primary: #0084ff;
+  --color-primary-hover: #006fd9;
   --color-paper: #F5F5F0;
   --color-ink: #1D1D1B;
   --color-whatsapp: #25D366;
@@ -84,7 +84,7 @@
     content: ""; @apply absolute w-1 h-1 rounded-full bg-primary;
     bottom: 6px; left: 50%; transform: translateX(-50%);
   }
-  .dp-day.in-range { background: #ffedd5; color: #7c2d12; border-radius: 0; }
+  .dp-day.in-range { background: #dbeafe; color: #1e3a8a; border-radius: 0; }
   .dp-day.range-start { @apply bg-primary text-white; border-radius: 999px 0 0 999px; }
   .dp-day.range-end { @apply bg-primary text-white; border-radius: 0 999px 999px 0; }
   .dp-day.range-start.range-end, .dp-day.is-single { @apply bg-primary text-white rounded-full; }
