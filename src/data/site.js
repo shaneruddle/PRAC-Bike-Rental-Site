@@ -19,7 +19,7 @@ export const site = {
   },
   carRentalUrl: "https://www.pattayarentacar.com",
   logo: {
-    main: "https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/PRAB-Logo-1.png?alt=media&token=246929e1-0c5a-49e1-ab26-1f9b10ee1a2b",
+    main: "https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/PRAB-Logo-1-optimized.png?alt=media&token=0ac67e65-3590-4a16-a884-2e1a2415cb07",
     square:
       "https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/PRAB-Logo-2.jpg?alt=media&token=9f7e5372-55d9-4eaf-a909-5f8e35d141bf",
   },
