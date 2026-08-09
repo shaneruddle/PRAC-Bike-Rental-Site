@@ -1,0 +1,94 @@
+<!-- Breadcrumb -->
+<div class="container mx-auto px-6 pt-8 text-xs text-ink/40">
+  <a href="<%= lang === 'th' ? '/th/' : '/' %>" class="hover:text-primary transition-colors"><%= ui.home %></a>
+  <span class="mx-2">/</span>
+  <span class="text-ink/60"><%= bike.name %></span>
+</div>
+
+<!-- Hero -->
+<section class="py-10 md:py-16 bg-paper">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <span class="eyebrow"><%= bike.engine %> &bull; <%= bike.transmission %></span>
+      <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
+      <p class="text-ink/60 text-lg mb-6"><%= content.tagline %></p>
+      <div class="flex items-baseline gap-3 mb-8">
+        <span class="font-display text-3xl font-black text-primary">&#3647;<%= bike.daily %></span>
+        <span class="text-ink/40 text-sm uppercase tracking-widest font-bold"><%= ui.perDay %></span>
+        <span class="text-ink/30 text-sm ml-2">&#3647;<%= bike.monthly %> <%= ui.perMonth %></span>
+      </div>
+      <a href="#contact-form" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase shadow-lg shadow-primary/20 transition-all active:scale-95 inline-block">
+        <%= ui.checkAvailability %>
+      </a>
+    </div>
+    <div class="aspect-[4/3] relative overflow-hidden rounded-3xl bg-white">
+      <img src="<%= bike.image %>" alt="<%= bike.name %>" class="w-full h-full object-cover" referrerpolicy="no-referrer" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- Intro / best-for / body -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-6 max-w-3xl">
+    <p class="text-lg text-ink/70 mb-8 leading-relaxed"><%= content.intro %></p>
+    <div class="bg-paper rounded-2xl p-6 mb-8 border border-black/5">
+      <span class="text-xs font-bold uppercase tracking-widest text-primary"><%= ui.bestFor %></span>
+      <p class="text-ink/70 mt-2"><%= content.bestFor %></p>
+    </div>
+    <% content.body.forEach(function(para) { %>
+      <p class="text-ink/70 mb-4 leading-relaxed"><%= para %></p>
+    <% }); %>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 bg-paper">
+  <div class="container mx-auto px-6 max-w-3xl">
+    <h2 class="font-display text-2xl font-bold mb-8 text-ink"><%= ui.faqHeading %></h2>
+    <% content.faqs.forEach(function(f) { %>
+      <details class="border-b border-black/5 py-4">
+        <summary class="font-bold cursor-pointer text-ink"><%= f.q %></summary>
+        <p class="text-ink/60 mt-2 leading-relaxed"><%= f.a %></p>
+      </details>
+    <% }); %>
+  </div>
+</section>
+
+<!-- Cross-links: language switch + back to fleet -->
+<section class="py-10 text-center bg-white border-t border-black/5">
+  <a href="<%= altPath %>" class="text-primary font-bold text-sm hover:underline"><%= lang === 'th' ? ui.readInEnglish : ui.readInThai %></a>
+  <span class="mx-3 text-ink/20">|</span>
+  <a href="<%= lang === 'th' ? '/th/#fleet' : '/#fleet' %>" class="text-ink/50 text-sm hover:text-primary transition-colors"><%= ui.viewAllBikes %></a>
+  <span class="mx-3 text-ink/20">|</span>
+  <a href="<%= lang === 'th' ? '/th/guides/nmax-vs-pcx/' : '/guides/nmax-vs-pcx/' %>" class="text-ink/50 text-sm hover:text-primary transition-colors"><%= ui.compareGuideLink %></a>
+</section>
+
+<!-- Structured data: Product with Offer -->
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": bike.name,
+  "category": "Motorbike Rental",
+  "image": bike.image,
+  "offers": {
+    "@type": "Offer",
+    "price": String(bike.daily),
+    "priceCurrency": "THB",
+    "availability": "https://schema.org/InStock",
+    "url": "https://" + site.domain + urlPath,
+    "priceValidUntil": priceValidUntil
+  }
+}) %>
+</script>
+
+<!-- Structured data: FAQPage -->
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": content.faqs.map(function (f) {
+    return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } };
+  })
+}) %>
+</script>

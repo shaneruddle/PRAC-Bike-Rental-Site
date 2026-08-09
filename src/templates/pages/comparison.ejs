@@ -1,0 +1,85 @@
+<!-- Breadcrumb -->
+<div class="container mx-auto px-6 pt-8 text-xs text-ink/40">
+  <a href="<%= lang === 'th' ? '/th/' : '/' %>" class="hover:text-primary transition-colors"><%= ui.home %></a>
+  <span class="mx-2">/</span>
+  <span class="text-ink/60"><%= content.h1 %></span>
+</div>
+
+<!-- Hero -->
+<section class="py-10 md:py-16 bg-paper">
+  <div class="container mx-auto px-6 max-w-3xl text-center">
+    <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
+    <p class="text-ink/60 text-lg"><%= content.intro %></p>
+  </div>
+</section>
+
+<!-- Comparison table -->
+<section class="py-12 bg-white">
+  <div class="container mx-auto px-6 max-w-3xl">
+    <h2 class="font-display text-xl font-bold mb-6 text-ink text-center"><%= ui.tableSpecHeading %></h2>
+    <div class="overflow-x-auto rounded-2xl border border-black/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-paper">
+            <% content.table.headers.forEach(function(h) { %>
+              <th class="p-4 text-left font-bold text-ink uppercase tracking-widest text-xs"><%= h %></th>
+            <% }); %>
+          </tr>
+        </thead>
+        <tbody>
+          <% content.table.rows.forEach(function(row, i) { %>
+            <tr class="<%= i % 2 === 0 ? 'bg-white' : 'bg-paper/50' %> border-t border-black/5">
+              <% row.forEach(function(cell, j) { %>
+                <td class="p-4 <%= j === 0 ? 'font-bold text-ink' : 'text-ink/70' %>"><%= cell %></td>
+              <% }); %>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Body -->
+<section class="py-8 bg-white">
+  <div class="container mx-auto px-6 max-w-3xl">
+    <% content.body.forEach(function(para) { %>
+      <p class="text-ink/70 mb-4 leading-relaxed"><%= para %></p>
+    <% }); %>
+    <div class="bg-paper rounded-2xl p-6 mt-8 border border-black/5">
+      <span class="text-xs font-bold uppercase tracking-widest text-primary"><%= ui.verdictHeading %></span>
+      <p class="text-ink/70 mt-2 leading-relaxed"><%= content.verdict %></p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 bg-paper">
+  <div class="container mx-auto px-6 max-w-3xl">
+    <h2 class="font-display text-2xl font-bold mb-8 text-ink"><%= ui.faqHeading %></h2>
+    <% content.faqs.forEach(function(f) { %>
+      <details class="border-b border-black/5 py-4">
+        <summary class="font-bold cursor-pointer text-ink"><%= f.q %></summary>
+        <p class="text-ink/60 mt-2 leading-relaxed"><%= f.a %></p>
+      </details>
+    <% }); %>
+  </div>
+</section>
+
+<!-- Cross-links -->
+<section class="py-10 text-center bg-white border-t border-black/5">
+  <a href="<%= altPath %>" class="text-primary font-bold text-sm hover:underline"><%= lang === 'th' ? ui.readInEnglish : ui.readInThai %></a>
+  <span class="mx-3 text-ink/20">|</span>
+  <a href="<%= lang === 'th' ? '/th/#fleet' : '/#fleet' %>" class="text-ink/50 text-sm hover:text-primary transition-colors"><%= ui.viewAllBikes %></a>
+</section>
+
+<!-- Structured data: FAQPage -->
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": content.faqs.map(function (f) {
+    return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } };
+  })
+}) %>
+</script>

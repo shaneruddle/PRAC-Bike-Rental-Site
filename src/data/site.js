@@ -28,6 +28,7 @@ export const site = {
 export const fleet = [
   {
     name: "Yamaha GT 125",
+    slug: "yamaha-gt-125",
     engine: "125cc",
     transmission: "Auto",
     daily: 200,
@@ -37,6 +38,7 @@ export const fleet = [
   },
   {
     name: "Yamaha Nmax",
+    slug: "yamaha-nmax",
     engine: "155cc",
     transmission: "Auto",
     daily: 300,
@@ -46,6 +48,7 @@ export const fleet = [
   },
   {
     name: "Honda PCX",
+    slug: "honda-pcx",
     engine: "150cc",
     transmission: "Auto",
     daily: 300,
@@ -54,6 +57,7 @@ export const fleet = [
   },
   {
     name: "Yamaha Aerox",
+    slug: "yamaha-aerox",
     engine: "155cc",
     transmission: "Auto",
     daily: 300,

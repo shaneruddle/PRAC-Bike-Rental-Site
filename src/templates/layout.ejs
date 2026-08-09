@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= lang || 'en' %>">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
 <meta property="og:title" content="<%= title %> | <%= site.name %>">
 <meta property="og:description" content="<%= description %>">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://<%= site.domain %>/">
+<meta property="og:url" content="https://<%= site.domain %><%= path || '/' %>">
 <meta property="og:image" content="<%= site.logo.square %>">
 <meta property="og:site_name" content="<%= site.name %>">
 
@@ -26,7 +26,11 @@
 <meta name="twitter:image" content="<%= site.logo.square %>">
 
 <!-- Canonical -->
-<link rel="canonical" href="https://<%= site.domain %>/">
+<link rel="canonical" href="https://<%= site.domain %><%= path || '/' %>">
+<% if (typeof altHref !== 'undefined' && altHref) { %>
+<link rel="alternate" hreflang="<%= altLang %>" href="https://<%= site.domain %><%= altHref %>">
+<link rel="alternate" hreflang="<%= lang || 'en' %>" href="https://<%= site.domain %><%= path %>">
+<% } %>
 
 <!-- Google tag (gtag.js) - GA4 + Google Ads (same property as the booking engine) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FHJNX2F1T"></script>
