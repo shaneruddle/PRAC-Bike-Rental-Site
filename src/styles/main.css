@@ -47,4 +47,48 @@
   .input-field {
     @apply w-full bg-paper border border-black/10 rounded-2xl py-4 px-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none;
   }
+
+  /* Compact hero card (booking widget wrapper) */
+  .card-compact {
+    @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-sm rounded-[32px] p-8;
+  }
+
+  /* --- Date range picker (mirrors pattayarentacar.com) --- */
+  .dp-field {
+    @apply w-full p-4 bg-paper rounded-xl border border-gray-100 text-sm font-black text-ink outline-none flex items-center gap-2 cursor-pointer text-left transition-all hover:border-gray-300;
+  }
+  .dp-field.is-placeholder { @apply text-gray-400 font-semibold; }
+  .dp-overlay {
+    @apply fixed inset-0 z-[100] hidden items-start justify-center p-4;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: rgba(0,0,0,0.45);
+  }
+  .dp-overlay.is-open { @apply flex; }
+  .dp-panel { @apply bg-white rounded-3xl shadow-2xl w-full max-w-xl; overflow-y: auto; max-height: calc(100vh - 2rem); max-height: calc(100dvh - 2rem); }
+  .dp-day {
+    @apply flex items-center justify-center text-sm font-semibold cursor-pointer bg-transparent text-ink relative;
+    aspect-ratio: 1 / 1; border: none; font-family: inherit;
+  }
+  .dp-day.is-empty { @apply pointer-events-none; }
+  .dp-day.is-disabled { @apply text-gray-300 pointer-events-none; }
+  .dp-day.is-min-block { @apply text-gray-300 cursor-not-allowed; }
+  .dp-day.is-min-block:hover::after {
+    content: attr(data-tip);
+    @apply absolute bg-primary text-white font-bold rounded-lg whitespace-nowrap z-10;
+    font-size: 10px; padding: 4px 8px;
+    bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%);
+  }
+  .dp-day:not(.is-disabled):not(.is-empty):not(.is-min-block):hover { @apply bg-gray-100 rounded-full; }
+  .dp-day.is-today::after {
+    content: ""; @apply absolute w-1 h-1 rounded-full bg-primary;
+    bottom: 6px; left: 50%; transform: translateX(-50%);
+  }
+  .dp-day.in-range { background: #ffedd5; color: #7c2d12; border-radius: 0; }
+  .dp-day.range-start { @apply bg-primary text-white; border-radius: 999px 0 0 999px; }
+  .dp-day.range-end { @apply bg-primary text-white; border-radius: 0 999px 999px 0; }
+  .dp-day.range-start.range-end, .dp-day.is-single { @apply bg-primary text-white rounded-full; }
+  .dp-day.in-range.is-today::after,
+  .dp-day.range-start.is-today::after,
+  .dp-day.range-end.is-today::after { @apply bg-white; }
 }

@@ -22,8 +22,7 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 mb-10 max-w-lg">
-          <a href="#contact-form" class="btn-dark flex-1">Check Availability</a>
-          <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="btn-whatsapp flex-[1.2]">WhatsApp Us Now</a>
+          <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="btn-whatsapp flex-1">WhatsApp Us Now</a>
         </div>
 
         <div class="flex flex-wrap gap-4">
@@ -39,10 +38,8 @@
         </div>
       </div>
 
-      <div class="relative hidden lg:block">
-        <div class="aspect-square bg-white rounded-3xl overflow-hidden shadow-2xl border border-black/5">
-          <img src="<%= site.logo.square %>" alt="<%= site.name %>" class="w-full h-full object-cover">
-        </div>
+      <div class="relative">
+        <%- include('../components/date-picker') %>
       </div>
     </div>
   </div>
