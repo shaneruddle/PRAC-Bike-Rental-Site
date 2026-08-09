@@ -22,7 +22,7 @@
       </a>
     </div>
     <div class="aspect-[4/3] relative overflow-hidden rounded-3xl bg-white">
-      <img src="<%= bike.image %>" alt="<%= bike.name %>" class="w-full h-full object-cover" referrerpolicy="no-referrer" loading="lazy">
+      <img src="<%= bike.image %>" alt="<%= bike.name %>" class="w-full h-full object-cover" referrerpolicy="no-referrer" loading="eager" fetchpriority="high">
     </div>
   </div>
 </section>
