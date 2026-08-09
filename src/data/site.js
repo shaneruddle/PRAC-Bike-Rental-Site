@@ -86,7 +86,7 @@ export const faqs = [
   },
   {
     q: "What happens if there's a breakdown?",
-    a: "In the unlikely event of a breakdown, we provide 24/7 roadside assistance. Simply call or WhatsApp us, and we will send a technician or a replacement bike immediately.",
+    a: "If your bike breaks down, call or WhatsApp us during office hours (9am - 5pm, 365 days a year) and we'll arrange a technician or a replacement bike as quickly as possible.",
   },
 ];
 
@@ -106,7 +106,7 @@ export const reviews = [
   {
     name: "Lukas K.",
     location: "Germany",
-    text: "I've tried many rental shops in Pattaya, and this is by far the best. Reliable bikes and great 24/7 support.",
+    text: "I've tried many rental shops in Pattaya, and this is by far the best. Reliable bikes and great support.",
     stars: 5,
   },
 ];

@@ -18,7 +18,7 @@
         </h1>
 
         <p class="text-lg md:text-xl text-ink/60 leading-relaxed mb-8 max-w-xl">
-          The most trusted service in the city. Professional maintenance, 24/7 support, and the best rates guaranteed.
+          The most trusted service in the city. Professional maintenance, friendly support, and the best rates guaranteed.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 mb-10 max-w-lg">
@@ -28,10 +28,13 @@
 
         <div class="flex flex-wrap gap-4">
           <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
-            <span class="font-bold text-sm">Helmets Included</span>
+            <span class="font-bold text-sm">16+ Years in Pattaya</span>
           </div>
           <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
-            <span class="font-bold text-sm">10,000+ happy customers since 2010</span>
+            <span class="font-bold text-sm">10,000+ Happy Customers</span>
+          </div>
+          <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
+            <span class="font-bold text-sm">Helmets Included</span>
           </div>
         </div>
       </div>
@@ -100,6 +103,27 @@
   </div>
 </section>
 
+<!-- Structured data: fleet as Products with Offers -->
+<% fleet.forEach(function(bike) { %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": bike.name,
+  "category": "Motorbike Rental",
+  "image": bike.image,
+  "offers": {
+    "@type": "Offer",
+    "price": String(bike.daily),
+    "priceCurrency": "THB",
+    "availability": "https://schema.org/InStock",
+    "url": "https://" + site.domain + "/#fleet",
+    "priceValidUntil": priceValidUntil
+  }
+}) %>
+</script>
+<% }); %>
+
 <!-- Pricing tiers -->
 <section class="py-24 bg-white">
   <div class="container mx-auto px-6">
@@ -119,7 +143,7 @@
         <ul class="space-y-3 text-sm text-ink/60">
           <li>&#10003; 2 Helmets Included</li>
           <li>&#10003; Unlimited Mileage</li>
-          <li>&#10003; 24/7 Road Support</li>
+          <li>&#10003; Well-Maintained Bikes</li>
         </ul>
       </div>
 
@@ -240,6 +264,14 @@
             <h4 class="font-bold">Best Fleet</h4>
             <p class="text-sm text-ink/50 leading-relaxed">Modern, well-maintained bikes only. No old stock.</p>
           </div>
+          <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
+            <h4 class="font-bold">Unlimited Mileage</h4>
+            <p class="text-sm text-ink/50 leading-relaxed">No hidden restrictions on how far you ride.</p>
+          </div>
+          <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
+            <h4 class="font-bold">1,000+ Five-Star Reviews</h4>
+            <p class="text-sm text-ink/50 leading-relaxed">Trusted by travelers from around the world since 2010.</p>
+          </div>
         </div>
       </div>
 
@@ -256,6 +288,44 @@
             <iframe src="<%= site.office.mapEmbed %>" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="<%= site.name %> Location"></iframe>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Rental requirements & policy -->
+<section class="py-24 bg-paper">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="eyebrow mx-auto">Before You Book</span>
+      <h2 class="font-display text-4xl font-bold mb-4 text-ink">Rental Requirements &amp; Policy</h2>
+      <p class="text-ink/50 max-w-2xl mx-auto">Everything you need to know before picking up your bike.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card p-6 space-y-2">
+        <h4 class="font-bold">Documents Required</h4>
+        <p class="text-sm text-ink/50 leading-relaxed">Your original passport and a valid driving license.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h4 class="font-bold">Security Deposit</h4>
+        <p class="text-sm text-ink/50 leading-relaxed">A 1,000 THB cash deposit is required at pickup, refunded on return.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h4 class="font-bold">Insurance Included</h4>
+        <p class="text-sm text-ink/50 leading-relaxed">Every bike comes with compulsory government insurance (Po Lo Bo), covering basic medical costs.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h4 class="font-bold">Helmets Included</h4>
+        <p class="text-sm text-ink/50 leading-relaxed">Two helmets are provided with every rental at no extra cost.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h4 class="font-bold">Pickup &amp; Return Only</h4>
+        <p class="text-sm text-ink/50 leading-relaxed">All rentals are collected and returned at our Central Pattaya office &mdash; we don't offer hotel delivery.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h4 class="font-bold">Well-Maintained Fleet</h4>
+        <p class="text-sm text-ink/50 leading-relaxed">Every bike is regularly serviced and checked before it goes out.</p>
       </div>
     </div>
   </div>
@@ -348,8 +418,23 @@
   </div>
 </section>
 
+<!-- Structured data: FAQPage -->
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(function(faq) {
+    return {
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    };
+  })
+}) %>
+</script>
+
 <!-- Sticky mobile CTA -->
-<div class="fixed bottom-0 left-0 right-0 z-40 md:hidden p-4 grid grid-cols-2 gap-3 bg-white/90 backdrop-blur-lg border-t border-black/5">
+<div class="fixed bottom-0 left-0 right-0 z-40 md:hidden p-4 grid grid-cols-2 gap-3 bg-white/90 backdrop-blur-lg border-t border-black/5" style="padding-bottom: max(1rem, env(safe-area-inset-bottom));">
   <a href="tel:<%= site.contact.phone.replace(/\s/g, '') %>" class="bg-ink text-white flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-sm shadow-xl">Call Now</a>
   <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="bg-whatsapp text-white flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-sm shadow-xl">WhatsApp</a>
 </div>
