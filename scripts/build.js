@@ -23,6 +23,11 @@ const priceValidUntil = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
 
 const today = new Date().toISOString().slice(0, 10);
 
+// Cache-buster for CSS/JS asset URLs: firebase.json serves them with a 1-year
+// Cache-Control, so each deploy must change the URL or returning visitors keep
+// stale assets (broken styling) until the cache expires.
+const buildId = Date.now().toString(36);
+
 async function build() {
   await fs.emptyDir(distDir);
 
@@ -59,6 +64,7 @@ async function build() {
         "Trusted motorbike and scooter rental in Pattaya since 2010. Yamaha, Honda fleet, full insurance, friendly support. Book online or via WhatsApp.",
       body: pageBody,
       priceRange,
+      buildId,
     },
     { root: path.join(root, "src/templates") }
   );

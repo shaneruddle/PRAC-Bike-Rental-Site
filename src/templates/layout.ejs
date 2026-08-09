@@ -29,7 +29,7 @@
 <link rel="canonical" href="https://<%= site.domain %>/">
 
 <!-- Styling -->
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css?v=<%= buildId %>">
 <link rel="icon" type="image/jpeg" href="https://firebasestorage.googleapis.com/v0/b/pattaya-rent-a-car-rebuild.firebasestorage.app/o/PRAC-Icon.jpg?alt=media&token=f5935b90-df97-4241-bb73-149a8ea1b939">
 
 <!-- Structured Data -->
@@ -71,7 +71,7 @@
 
 <%- include('components/date-picker-overlay') %>
 
-<script src="/assets/js/date-picker.js" defer></script>
+<script src="/assets/js/date-picker.js?v=<%= buildId %>" defer></script>
 
 </body>
 </html>
