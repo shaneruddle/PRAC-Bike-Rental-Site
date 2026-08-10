@@ -90,7 +90,7 @@ async function build() {
   await renderPage({
     templateFile: "home.ejs",
     templateData: { site, fleet, faqs, reviews },
-    title: "Premium Scooter & Motorbike Rentals",
+    title: "Motorbike & Scooter Rental in Pattaya",
     description:
       "Trusted motorbike and scooter rental in Pattaya since 2009. Yamaha, Honda fleet, full insurance, friendly support. Book online or via WhatsApp.",
     urlPath: "/",
