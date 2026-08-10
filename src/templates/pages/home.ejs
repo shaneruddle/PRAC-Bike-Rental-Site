@@ -17,13 +17,9 @@
           Rentals in <span class="text-primary">Pattaya</span>
         </h1>
 
-        <p class="text-lg md:text-xl text-ink/60 leading-relaxed mb-8 max-w-xl">
+        <p class="text-lg md:text-xl text-ink/60 leading-relaxed mb-10 max-w-xl">
           The most trusted service in the city. Professional maintenance, friendly support, and the best rates guaranteed.
         </p>
-
-        <div class="flex flex-col sm:flex-row gap-3 mb-10 max-w-lg">
-          <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="btn-whatsapp flex-1">WhatsApp Us Now</a>
-        </div>
 
         <div class="flex flex-wrap gap-4">
           <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
@@ -137,32 +133,6 @@
         </div>
       </div>
       <% }); %>
-    </div>
-  </div>
-</section>
-
-<!-- Quick contact bar -->
-<section class="bg-ink py-16">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-10">
-      <h2 class="text-white font-display text-3xl font-bold mb-2">Book via Messaging</h2>
-      <p class="text-white/50">Get an instant response and check current availability</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-      <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="group p-6 rounded-2xl bg-whatsapp/10 border border-whatsapp/20 flex items-center gap-5">
-        <div class="w-14 h-14 rounded-xl bg-whatsapp text-white flex items-center justify-center shadow-lg shadow-whatsapp/20 font-black">W</div>
-        <div class="flex flex-col">
-          <span class="text-white font-bold text-lg leading-tight uppercase tracking-wide">WhatsApp</span>
-          <span class="text-whatsapp font-bold text-sm"><%= site.contact.phone %></span>
-        </div>
-      </a>
-      <a href="tel:<%= site.contact.phone.replace(/\s/g, '') %>" class="group p-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center gap-5">
-        <div class="w-14 h-14 rounded-xl bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/20 font-black">P</div>
-        <div class="flex flex-col">
-          <span class="text-white font-bold text-lg leading-tight uppercase tracking-wide">Direct Call</span>
-          <span class="text-primary font-bold text-sm"><%= site.contact.phone %></span>
-        </div>
-      </a>
     </div>
   </div>
 </section>
