@@ -252,3 +252,38 @@ export const comparisonGuide = {
     ]
   }
 };
+
+// Monthly-rental landing page. English only (language switcher is currently
+// disabled sitewide - see layout.ejs). Monthly prices are pulled from each
+// fleet entry's `monthly` field in site.js; shown as a starting-from rate
+// with a "confirm at contact" hedge since these figures haven't been
+// re-verified since the pricing/CTA redesign removed all visible pricing
+// sitewide (see claude/bike-site-dataforseo-quick-wins-aug-2026.md, Priority 3).
+export const monthlyRentalPage = {
+  title: "Monthly Motorbike Rental in Pattaya | Long-Term Scooter Hire",
+  description: "Renting a motorbike or scooter in Pattaya for a month or longer? See starting monthly rates for our fleet and get a current quote via WhatsApp or phone.",
+  h1: "Monthly Motorbike & Scooter Rental in Pattaya",
+  intro: "Staying in Pattaya for a month or longer? Renting by the month works out significantly cheaper than paying the daily rate for the same stretch of time, and you'll have the same bike for your whole trip - no re-booking, no waiting around at the office. Monthly rentals are available across our full fleet, subject to availability.",
+  savingsNote: "Renting monthly instead of daily works out to roughly 55-60% less over a full month, depending on the model.",
+  rateNote: "Rates shown are a starting point - contact us via WhatsApp or phone to confirm current availability and pricing for your dates.",
+  benefits: [
+    { title: "Lower cost per day", body: "Monthly rates work out to a fraction of the daily rate over a full month." },
+    { title: "One bike for your whole stay", body: "No re-booking or swapping vehicles partway through your trip." },
+    { title: "Insurance & helmets included", body: "Every monthly rental includes the same compulsory government insurance (Po Lo Bo) and helmets as our daily rentals." },
+    { title: "Easy to extend", body: "Message us before your month is up and we'll sort out an extension if the bike's still available." }
+  ],
+  faqs: [
+    {
+      q: "How much does a monthly motorbike rental cost in Pattaya?",
+      a: "Starting rates run from around 2,500 THB/month for the Yamaha GT 125 up to around 4,000 THB/month for our 150-155cc scooters (Nmax, PCX, Aerox), depending on the model, season and length of rental. Contact us via WhatsApp or phone for a current quote and to check availability for your dates."
+    },
+    {
+      q: "What do I need to rent a bike for a month?",
+      a: "The same as any rental with us: your original passport, a valid driving license and a 1000 baht cash deposit."
+    },
+    {
+      q: "Is insurance included on monthly rentals?",
+      a: "Yes - every bike, whether rented daily or monthly, comes with the compulsory government insurance (Po Lo Bo), which covers basic medical costs."
+    }
+  ]
+};

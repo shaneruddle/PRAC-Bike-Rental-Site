@@ -7,7 +7,7 @@ import fs from "fs-extra";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { site, fleet, faqs, reviews } from "../src/data/site.js";
-import { bikeSlugs, bikePages, uiLabels, comparisonGuide } from "../src/data/bikePages.js";
+import { bikeSlugs, bikePages, uiLabels, comparisonGuide, monthlyRentalPage } from "../src/data/bikePages.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -146,6 +146,17 @@ async function build() {
       priority: "0.7",
     });
   }
+
+  // Monthly rental landing page (English only - see bikePages.js comment).
+  await renderPage({
+    templateFile: "monthly-rental.ejs",
+    templateData: { site, fleet, content: monthlyRentalPage },
+    title: monthlyRentalPage.title,
+    description: monthlyRentalPage.description,
+    urlPath: "/monthly-rental/",
+    lang: "en",
+    priority: "0.7",
+  });
 
   // Comparison guide (English + Thai).
   const guideEnPath = `/guides/${comparisonGuide.slug}/`;
