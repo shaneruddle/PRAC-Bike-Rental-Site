@@ -39,7 +39,7 @@ export const bikePages = {
   "yamaha-gt-125": {
     fleetIndex: 0,
     en: {
-      title: "Yamaha GT 125 Rental in Pattaya | Automatic Scooter Hire",
+      title: "Yamaha GT 125 Rental in Pattaya | 125cc Scooter",
       description: "Rent the Yamaha GT 125 in Pattaya. Light, automatic and easy to ride - ideal for beginners and short trips around town. Book online with Pattaya Rent a Bike.",
       h1: "Yamaha GT 125 Rental in Pattaya",
       tagline: "The easiest, most affordable way to get around Pattaya.",
@@ -79,7 +79,7 @@ export const bikePages = {
   "yamaha-nmax": {
     fleetIndex: 1,
     en: {
-      title: "Yamaha Nmax Rental in Pattaya | 155cc Automatic Scooter",
+      title: "Yamaha Nmax Rental in Pattaya | 155cc Scooter",
       description: "Rent the Yamaha Nmax in Pattaya. A 155cc automatic scooter with room for two, great for longer rides beyond central Pattaya. Book online today.",
       h1: "Yamaha Nmax Rental in Pattaya",
       tagline: "More power, more comfort - built for two.",
@@ -119,7 +119,7 @@ export const bikePages = {
   "honda-pcx": {
     fleetIndex: 2,
     en: {
-      title: "Honda PCX Rental in Pattaya | 150cc Automatic Scooter",
+      title: "Honda PCX Rental in Pattaya | 150cc Scooter",
       description: "Rent the Honda PCX in Pattaya. A smooth, spacious 150cc automatic scooter, one of our two most popular models. Book online with Pattaya Rent a Bike.",
       h1: "Honda PCX Rental in Pattaya",
       tagline: "Smooth, spacious, and dependable.",
@@ -159,7 +159,7 @@ export const bikePages = {
   "yamaha-aerox": {
     fleetIndex: 3,
     en: {
-      title: "Yamaha Aerox Rental in Pattaya | Sporty 155cc Scooter",
+      title: "Yamaha Aerox Rental in Pattaya | 155cc Scooter",
       description: "Rent the Yamaha Aerox in Pattaya. A sporty-styled 155cc automatic scooter with the same performance as the Nmax. Book online with Pattaya Rent a Bike.",
       h1: "Yamaha Aerox Rental in Pattaya",
       tagline: "The same great performance, with a sportier look.",
