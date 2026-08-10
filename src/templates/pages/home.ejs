@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <div class="relative">
+      <div class="relative" id="search-bikes">
         <%- include('../components/date-picker') %>
       </div>
     </div>
@@ -88,7 +88,7 @@
               <span class="text-ink/40 text-[10px] font-bold uppercase">Monthly</span>
               <span class="font-bold text-ink">&#3647;<%= bike.monthly %></span>
             </div>
-            <a href="#contact-form" class="bg-ink text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-primary transition-colors">Book Now</a>
+            <a href="/#search-bikes" class="bg-ink text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-primary transition-colors">Book Now</a>
           </div>
         </div>
       </div>
@@ -331,71 +331,6 @@
   </div>
 </section>
 
-<!-- Contact form -->
-<section class="py-24 bg-paper">
-  <div class="container mx-auto px-6 max-w-2xl">
-    <div id="contact-form" class="card p-8 md:p-12">
-      <div class="mb-10 text-center">
-        <h2 class="font-display text-3xl font-bold mb-3 text-ink">Quick Enquiry</h2>
-        <p class="text-ink/40">Fill out this form and we'll reply to your email: <span class="text-primary font-bold"><%= site.contact.email %></span></p>
-      </div>
-
-      <form id="enquiry-form" action="/api/contact" method="POST" class="space-y-6">
-        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
-        <div class="space-y-2">
-          <label class="text-xs font-bold uppercase tracking-widest text-ink/40 ml-2">Your Name</label>
-          <input name="name" required type="text" placeholder="John Doe" class="input-field">
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="space-y-2">
-            <label class="text-xs font-bold uppercase tracking-widest text-ink/40 ml-2">Email</label>
-            <input name="email" required type="email" placeholder="john@example.com" class="input-field">
-          </div>
-          <div class="space-y-2">
-            <label class="text-xs font-bold uppercase tracking-widest text-ink/40 ml-2">Phone</label>
-            <input name="phone" required type="tel" placeholder="+66..." class="input-field">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="space-y-2">
-            <label class="text-xs font-bold uppercase tracking-widest text-ink/40 ml-2">Rental Start</label>
-            <input name="rentalStart" required type="date" class="input-field">
-          </div>
-          <div class="space-y-2">
-            <label class="text-xs font-bold uppercase tracking-widest text-ink/40 ml-2">Rental End</label>
-            <input name="rentalEnd" required type="date" class="input-field">
-          </div>
-        </div>
-
-        <div class="space-y-2">
-          <label class="text-xs font-bold uppercase tracking-widest text-ink/40 ml-2">Bike Type Preference</label>
-          <select name="bikePreference" class="input-field">
-            <% fleet.forEach(function(bike) { %>
-            <option value="<%= bike.name %>"><%= bike.name %></option>
-            <% }); %>
-          </select>
-        </div>
-
-        <div class="space-y-2">
-          <label class="text-xs font-bold uppercase tracking-widest text-ink/40 ml-2">Message (Optional)</label>
-          <textarea name="message" rows="3" placeholder="Any special requests or questions?" class="input-field resize-none"></textarea>
-        </div>
-
-        <button type="submit" class="btn-primary w-full">Send My Enquiry</button>
-
-        <p id="form-status" class="text-center text-sm hidden"></p>
-
-        <p class="text-ink/40 text-[10px] leading-relaxed pt-2">
-          Your enquiry is handled by our official team. We respond to all requests within 1 hour during business times. If the form doesn't work for you, message us directly on
-          <a href="<%= site.contact.whatsapp %>" class="text-primary font-bold">WhatsApp</a>.
-        </p>
-      </form>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="py-24 bg-white">
   <div class="container mx-auto px-6 max-w-3xl">
@@ -438,29 +373,3 @@
   <a href="tel:<%= site.contact.phone.replace(/\s/g, '') %>" class="bg-ink text-white flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-sm shadow-xl">Call Now</a>
   <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="bg-whatsapp text-white flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-sm shadow-xl">WhatsApp</a>
 </div>
-
-<script>
-  document.getElementById('enquiry-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const form = e.target;
-    const status = document.getElementById('form-status');
-    const data = Object.fromEntries(new FormData(form).entries());
-    status.classList.remove('hidden');
-    status.textContent = 'Sending...';
-    status.className = 'text-center text-sm text-ink/50';
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error('Request failed');
-      status.textContent = 'Thanks! We will be in touch shortly.';
-      status.className = 'text-center text-sm text-green-600 font-bold';
-      form.reset();
-    } catch (err) {
-      status.textContent = "Something went wrong - please message us on WhatsApp instead.";
-      status.className = 'text-center text-sm text-red-600 font-bold';
-    }
-  });
-</script>
