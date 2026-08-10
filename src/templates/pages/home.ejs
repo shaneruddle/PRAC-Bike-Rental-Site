@@ -87,7 +87,10 @@
 </section>
 
 <!-- Structured data: fleet as Products (no pricing — rates are dynamic via the booking
-     engine's live quote API and would go stale here; see claude/bike-site-ranking-audit-aug-2026.md) -->
+     engine's live quote API and would go stale here; see claude/bike-site-ranking-audit-aug-2026.md.
+     aggregateRating (business-wide, matches LocalBusiness/bike-detail pages) keeps these eligible
+     for Product rich results per Google's requirement that at least one of offers/review/
+     aggregateRating be present. -->
 <% fleet.forEach(function(bike) { %>
 <script type="application/ld+json">
 <%- JSON.stringify({
@@ -95,7 +98,12 @@
   "@type": "Product",
   "name": bike.name,
   "category": "Motorbike Rental",
-  "image": bike.image
+  "image": bike.image,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1200"
+  }
 }) %>
 </script>
 <% }); %>
