@@ -92,6 +92,10 @@ export const faqs = [
     q: "What happens if there's a breakdown?",
     a: "If your bike breaks down, call or WhatsApp us during office hours (9am - 5pm, 365 days a year) and we'll arrange a technician or a replacement bike as quickly as possible.",
   },
+  {
+    q: "Do you offer monthly rentals?",
+    a: "Yes, monthly rentals are available across our fleet, subject to availability, at a lower rate than paying daily. WhatsApp or call us for current monthly pricing and to check availability for your dates.",
+  },
 ];
 
 export const reviews = [
