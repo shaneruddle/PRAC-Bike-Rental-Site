@@ -86,7 +86,8 @@
   </div>
 </section>
 
-<!-- Structured data: fleet as Products with Offers -->
+<!-- Structured data: fleet as Products (no pricing — rates are dynamic via the booking
+     engine's live quote API and would go stale here; see claude/bike-site-ranking-audit-aug-2026.md) -->
 <% fleet.forEach(function(bike) { %>
 <script type="application/ld+json">
 <%- JSON.stringify({
@@ -94,15 +95,7 @@
   "@type": "Product",
   "name": bike.name,
   "category": "Motorbike Rental",
-  "image": bike.image,
-  "offers": {
-    "@type": "Offer",
-    "price": String(bike.daily),
-    "priceCurrency": "THB",
-    "availability": "https://schema.org/InStock",
-    "url": "https://" + site.domain + "/#fleet",
-    "priceValidUntil": priceValidUntil
-  }
+  "image": bike.image
 }) %>
 </script>
 <% }); %>

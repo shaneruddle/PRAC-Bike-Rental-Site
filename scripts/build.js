@@ -15,15 +15,6 @@ const distDir = path.join(root, "dist");
 const publicDir = path.join(root, "src/public");
 const templatesDir = path.join(root, "src/templates");
 
-// Typical daily rental price range across the fleet, for LocalBusiness.priceRange.
-const dailyPrices = fleet.map((bike) => bike.daily);
-const priceRange = `${Math.min(...dailyPrices)}-${Math.max(...dailyPrices)} THB/day`;
-
-// Offers are considered valid for 90 days from build time, then need a fresh deploy to refresh.
-const priceValidUntil = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
-  .toISOString()
-  .slice(0, 10);
-
 const today = new Date().toISOString().slice(0, 10);
 
 // Cache-buster for CSS/JS asset URLs: firebase.json serves them with a 1-year
@@ -69,7 +60,6 @@ async function renderPage({
       title,
       description,
       body: pageBody,
-      priceRange,
       buildId,
       path: urlPath,
       lang,
@@ -99,7 +89,7 @@ async function build() {
   // Homepage.
   await renderPage({
     templateFile: "home.ejs",
-    templateData: { site, fleet, faqs, reviews, priceValidUntil },
+    templateData: { site, fleet, faqs, reviews },
     title: "Premium Scooter & Motorbike Rentals",
     description:
       "Trusted motorbike and scooter rental in Pattaya since 2010. Yamaha, Honda fleet, full insurance, friendly support. Book online or via WhatsApp.",
@@ -126,7 +116,6 @@ async function build() {
         lang: "en",
         altPath: thPath,
         urlPath: enPath,
-        priceValidUntil,
       },
       title: page.en.title,
       description: page.en.description,
@@ -147,7 +136,6 @@ async function build() {
         lang: "th",
         altPath: enPath,
         urlPath: thPath,
-        priceValidUntil,
       },
       title: page.th.title,
       description: page.th.description,

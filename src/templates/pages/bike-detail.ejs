@@ -58,7 +58,8 @@
   <a href="<%= lang === 'th' ? '/th/guides/nmax-vs-pcx/' : '/guides/nmax-vs-pcx/' %>" class="text-ink/50 text-sm hover:text-primary transition-colors"><%= ui.compareGuideLink %></a>
 </section>
 
-<!-- Structured data: Product with Offer -->
+<!-- Structured data: Product (no pricing — rates are dynamic via the booking engine's
+     live quote API and would go stale here; see claude/bike-site-ranking-audit-aug-2026.md) -->
 <script type="application/ld+json">
 <%- JSON.stringify({
   "@context": "https://schema.org",
@@ -70,14 +71,6 @@
     "@type": "AggregateRating",
     "ratingValue": "4.9",
     "reviewCount": "1200"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": String(bike.daily),
-    "priceCurrency": "THB",
-    "availability": "https://schema.org/InStock",
-    "url": "https://" + site.domain + urlPath,
-    "priceValidUntil": priceValidUntil
   }
 }) %>
 </script>
