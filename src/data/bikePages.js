@@ -287,3 +287,35 @@ export const monthlyRentalPage = {
     }
   ]
 };
+
+
+export const insuranceGuide = {
+  slug: "motorbike-insurance-in-thailand",
+  title: "Motorbike Insurance in Thailand: What's Actually Included | Pattaya Rent a Bike",
+  description: "What does motorbike insurance in Thailand actually cover? A clear, honest breakdown of Po Lo Bo compulsory insurance, what it doesn't cover, and what that means when you rent a scooter in Pattaya.",
+  h1: "Motorbike Insurance in Thailand: What's Actually Included",
+  intro: "Motorbike insurance in Thailand is one of those topics where what people assume they have and what they actually have can be very different. Here's a straightforward breakdown of what's really covered when you rent a scooter in Pattaya - and what isn't.",
+  table: {
+    headers: ["", "Compulsory (Po Lo Bo)", "Voluntary cover"],
+    rows: [
+      ["What it is", "Required by law on every registered vehicle", "Optional, bought separately by the vehicle's owner"],
+      ["Covers", "Basic medical costs for third parties injured in an accident", "Can extend to the rider, third-party property, and the vehicle itself, depending on the class"],
+      ["Covers vehicle damage?", "No", "Depends on class - full comprehensive cover exists but isn't universal"],
+      ["What Pattaya Rent a Bike provides", "Included on every rental", "Not currently offered as an add-on - see below"]
+      ]
+  },
+  body: [
+    "Every registered motorbike in Thailand, including rental bikes, is legally required to carry Compulsory Motor Insurance - locally known as Por Ror Bor or \"Po Lo Bo.\" It's a government scheme, and it does one job: it covers basic medical expenses for people injured in an accident, up to set limits. It does not cover damage to the bike, and it does not cover the rider's own injuries beyond those basic medical limits.",
+    "On top of that compulsory base, motorbike owners in Thailand can buy voluntary insurance in several classes, from third-party-only cover up to full comprehensive policies that also cover the vehicle itself. This voluntary layer is common on privately-owned bikes, but it isn't universal across the rental industry - plenty of rental shops in Pattaya, especially the cheapest, only carry the compulsory Po Lo Bo on their bikes.",
+    "Every bike in our fleet comes with Po Lo Bo and a helmet as standard. We don't currently offer an additional voluntary insurance upgrade as part of the rental - so if you'd like cover beyond the basic medical limits Po Lo Bo provides, that's worth arranging separately before you ride, through a travel insurance policy or a standalone personal accident policy.",
+    "One thing worth knowing if you're relying on travel insurance: many travel policies exclude motorbike accidents unless you're riding on a valid local licence or International Driving Permit (IDP) for the vehicle class. If you're planning to rent and ride without one, check your policy's fine print before you assume you're covered.",
+    "To rent with us you'll need your original passport, a valid driving licence, and a 1,000 baht cash deposit - the same across our whole fleet."
+    ],
+  verdict: "Po Lo Bo covers the legal minimum - basic medical costs for third parties, nothing more. It's what comes standard on every rental bike in Thailand, including ours. If you want cover for your own injuries or the bike itself beyond that, arrange it yourself through travel or personal accident insurance before you ride, and check the policy actually covers motorbike accidents for your licence situation.",
+  faqs: [
+    { q: "Is insurance included when I rent from Pattaya Rent a Bike?", a: "Yes - every bike in our fleet comes with the compulsory government insurance (Po Lo Bo), which covers basic medical costs for third parties in an accident. It does not cover damage to the bike or the rider's own injuries." },
+    { q: "Does Po Lo Bo cover me if I crash and damage the rental bike?", a: "No. Po Lo Bo only covers third-party medical expenses. It doesn't cover damage to the bike or your own injuries - that's why we require a 1,000 baht cash deposit on every rental." },
+    { q: "Can I buy extra insurance cover through Pattaya Rent a Bike?", a: "Not currently - we don't offer a voluntary insurance upgrade as part of the rental. If you want cover beyond Po Lo Bo's basic medical limits, arrange it separately through a travel insurance policy or standalone personal accident cover before you ride." },
+    { q: "Will my travel insurance cover a motorbike accident in Thailand?", a: "It depends on the policy - many travel insurance policies exclude motorbike accidents unless you're riding on a valid licence or International Driving Permit for the vehicle class. Check your policy's terms before you rely on it." }
+    ]
+};
