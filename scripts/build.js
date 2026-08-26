@@ -7,7 +7,7 @@ import fs from "fs-extra";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { site, fleet, faqs, reviews } from "../src/data/site.js";
-import { bikeSlugs, bikePages, uiLabels, comparisonGuide, monthlyRentalPage } from "../src/data/bikePages.js";
+import { bikeSlugs, bikePages, uiLabels, comparisonGuide, monthlyRentalPage, insuranceGuide } from "../src/data/bikePages.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -158,6 +158,17 @@ async function build() {
     priority: "0.7",
   });
 
+  // Motorbike insurance guide (English only).
+  await renderPage({
+    templateFile: "insurance.ejs",
+    templateData: { site, content: insuranceGuide },
+    title: insuranceGuide.title,
+    description: insuranceGuide.description,
+    urlPath: `/guides/${insuranceGuide.slug}/`,
+    lang: "en",
+    priority: "0.6",
+  });
+  
   // Comparison guide (English + Thai).
   const guideEnPath = `/guides/${comparisonGuide.slug}/`;
   const guideThPath = `/th/guides/${comparisonGuide.slug}/`;
