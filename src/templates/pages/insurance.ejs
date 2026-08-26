@@ -1,0 +1,99 @@
+<!-- Breadcrumb -->
+<div class="container mx-auto px-6 pt-8 text-xs text-ink/40">
+<a href="/" class="hover:text-primary transition-colors">Home</a>
+<span class="mx-2">/</span>
+<span class="text-ink/60"><%= content.h1 %></span>
+</div>
+
+<!-- Hero -->
+<section class="py-10 md:py-16 bg-paper">
+<div class="container mx-auto px-6 max-w-3xl text-center">
+<h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
+<p class="text-ink/60 text-lg"><%= content.intro %></p>
+</div>
+</section>
+
+<!-- Table: Thailand's motorbike insurance classes -->
+<section class="py-12 bg-white">
+<div class="container mx-auto px-6 max-w-3xl">
+<h2 class="font-display text-xl font-bold mb-6 text-ink text-center">Thailand's Motorbike Insurance Classes</h2>
+<div class="overflow-x-auto rounded-2xl border border-black/5">
+<table class="w-full text-sm">
+<thead>
+<tr class="bg-paper">
+<% content.table.headers.forEach(function(h) { %>
+<th class="p-4 text-left font-bold text-ink uppercase tracking-widest text-xs"><%= h %></th>
+<% }); %>
+</tr>
+</thead>
+<tbody>
+<% content.table.rows.forEach(function(row, i) { %>
+<tr class="<%= i % 2 === 0 ? 'bg-white' : 'bg-paper/50' %> border-t border-black/5">
+<% row.forEach(function(cell, j) { %>
+<td class="p-4 <%= j === 0 ? 'font-bold text-ink' : 'text-ink/70' %>"><%= cell %></td>
+<% }); %>
+</tr>
+<% }); %>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<!-- Body -->
+<section class="py-8 bg-white">
+<div class="container mx-auto px-6 max-w-3xl">
+<% content.body.forEach(function(para) { %>
+<p class="text-ink/70 mb-4 leading-relaxed"><%= para %></p>
+<% }); %>
+<div class="bg-paper rounded-2xl p-6 mt-8 border border-black/5">
+<span class="text-xs font-bold uppercase tracking-widest text-primary">The Bottom Line</span>
+<p class="text-ink/70 mt-2 leading-relaxed"><%= content.verdict %></p>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 bg-paper text-center">
+<div class="container mx-auto px-6 max-w-xl">
+<h2 class="font-display text-2xl font-bold mb-4 text-ink">Questions About What's Covered?</h2>
+<p class="text-ink/60 mb-8">Message us before you book and we'll walk you through exactly what's included.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="bg-whatsapp text-white px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase shadow-lg shadow-whatsapp/20 transition-all active:scale-95 inline-block">WhatsApp Us</a>
+<a href="tel:<%= site.contact.phone.replace(/\s/g, '') %>" class="bg-ink text-white px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase shadow-lg transition-all active:scale-95 inline-block">Call <%= site.contact.phone %></a>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-6 max-w-3xl">
+<h2 class="font-display text-2xl font-bold mb-8 text-ink">Frequently Asked Questions</h2>
+<% content.faqs.forEach(function(f) { %>
+<details class="border-b border-black/5 py-4">
+<summary class="font-bold cursor-pointer text-ink"><%= f.q %></summary>
+<p class="text-ink/60 mt-2 leading-relaxed"><%= f.a %></p>
+</details>
+<% }); %>
+</div>
+</section>
+
+<!-- Cross-links -->
+<section class="py-10 text-center bg-paper border-t border-black/5">
+<a href="/#fleet" class="text-ink/50 text-sm hover:text-primary transition-colors">View all bikes</a>
+<span class="mx-3 text-ink/20">|</span>
+<a href="/guides/nmax-vs-pcx/" class="text-ink/50 text-sm hover:text-primary transition-colors">Compare Nmax vs PCX</a>
+<span class="mx-3 text-ink/20">|</span>
+<a href="/monthly-rental/" class="text-ink/50 text-sm hover:text-primary transition-colors">Monthly rentals</a>
+</section>
+
+<!-- Structured data: FAQPage -->
+<script type="application/ld+json">
+<%- JSON.stringify({
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": content.faqs.map(function (f) {
+return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } };
+})
+}) %>
+</script>
