@@ -291,7 +291,7 @@ export const monthlyRentalPage = {
 
 export const insuranceGuide = {
   slug: "motorbike-insurance-in-thailand",
-  title: "Motorbike Insurance in Thailand: What's Actually Included | Pattaya Rent a Bike",
+  title: "Motorbike Insurance in Thailand: What's Actually Included",
   description: "What does motorbike insurance in Thailand actually cover? A clear, honest breakdown of Po Lo Bo compulsory insurance, what it doesn't cover, and what that means when you rent a scooter in Pattaya.",
   h1: "Motorbike Insurance in Thailand: What's Actually Included",
   intro: "Motorbike insurance in Thailand is one of those topics where what people assume they have and what they actually have can be very different. Here's a straightforward breakdown of what's really covered when you rent a scooter in Pattaya - and what isn't.",
