@@ -7,6 +7,7 @@ import fs from "fs-extra";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { site, fleet, faqs, reviews } from "../src/data/site.js";
+import { homeCopy } from "../src/data/homeCopy.js";
 import { bikeSlugs, bikePages, uiLabels, comparisonGuide, monthlyRentalPage, insuranceGuide } from "../src/data/bikePages.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -86,16 +87,29 @@ async function build() {
     await fs.copy(publicDir, distDir);
   }
 
-  // Homepage.
+  // Homepage (English + Thai).
   await renderPage({
     templateFile: "home.ejs",
-    templateData: { site, fleet, faqs, reviews },
-    title: "Motorbike & Scooter Rental in Pattaya",
-    description:
-      "Motorbike and scooter rental in Pattaya since 2009. Yamaha and Honda automatics, government insurance and two helmets included. Book online or via WhatsApp.",
+    templateData: { site, fleet, faqs, reviews, t: homeCopy.en },
+    title: homeCopy.en.meta.title,
+    description: homeCopy.en.meta.description,
     urlPath: "/",
     lang: "en",
+    altHref: "/th/",
+    altLang: "th",
     priority: "1.0",
+  });
+
+  await renderPage({
+    templateFile: "home.ejs",
+    templateData: { site, fleet, faqs: homeCopy.th.faqs, reviews, t: homeCopy.th },
+    title: homeCopy.th.meta.title,
+    description: homeCopy.th.meta.description,
+    urlPath: "/th/",
+    lang: "th",
+    altHref: "/",
+    altLang: "en",
+    priority: "0.9",
   });
 
   // Bike-model pages (English + Thai).

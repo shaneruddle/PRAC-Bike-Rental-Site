@@ -11,7 +11,7 @@ export const site = {
     lineId: "@pattayarentacar",
   },
   office: {
-    label: "Central Pattaya Office",
+    label: "Pratumnak Office",
     address: "359/119 Moo 12 Nongprue, Pattaya City, Chon Buri 20150",
     hours: "9am - 5pm, 365 days a year",
     // From the Pattaya Rent a Bike Google Business Profile (cid 5221869858550467634).
@@ -78,11 +78,11 @@ export const faqs = [
   },
   {
     q: "Do you deliver to hotels?",
-    a: "We do not offer delivery services. All customers must come to our central Pattaya office to pick up and return their bikes. This allows us to ensure the bike is perfectly adjusted for you and all paperwork is handled correctly.",
+    a: "We do not offer delivery services. All customers must come to our Pratumnak office to pick up and return their bikes. This allows us to ensure the bike is perfectly adjusted for you and all paperwork is handled correctly.",
   },
   {
     q: "What documents do I need to rent?",
-    a: "You will need your original passport and a valid driving license. We also require a 1000 baht cash deposit.",
+    a: "Please bring your original passport and a valid driving licence to show at pickup - we don't keep your passport. We take a 1,000 baht cash deposit instead, refunded when you return the bike.",
   },
   {
     q: "Is insurance included?",

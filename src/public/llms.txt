@@ -9,7 +9,7 @@ Motorbike and scooter rental in Pattaya since 2009, part of the Pattaya Rent a C
 - Line: @pattayarentacar
 
 ## Office
-- Central Pattaya Office, 359/119 Moo 12 Nongprue, Pattaya City, Chon Buri 20150
+- Pratumnak Office, 359/119 Moo 12 Nongprue, Pattaya City, Chon Buri 20150
 - Open 9am - 5pm, 365 days a year
 - Pickup and return at this office only - no hotel delivery
 
@@ -22,7 +22,7 @@ Motorbike and scooter rental in Pattaya since 2009, part of the Pattaya Rent a C
 Prices are subject to change - confirm exact price and availability at time of booking.
 
 ## Rental Requirements
-- Original passport and a valid driving licence required
+- Original passport and a valid driving licence shown at pickup - the passport is not kept
 - 1,000 THB cash deposit required, refunded on return
 - Compulsory government insurance (Po Lo Bo) included on all bikes. It covers basic medical costs only, not damage to the bike.
 
@@ -32,4 +32,5 @@ Prices are subject to change - confirm exact price and availability at time of b
 - /monthly-rental/: monthly motorbike and scooter rental
 - /guides/nmax-vs-pcx/: Yamaha Nmax vs Honda PCX comparison
 - /guides/motorbike-insurance-in-thailand/: what motorbike insurance in Thailand covers
+- /th/: Thai homepage
 - /th/bikes/ and /th/guides/: Thai-language versions

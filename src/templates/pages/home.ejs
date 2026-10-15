@@ -1,3 +1,4 @@
+<%# Copy comes from src/data/homeCopy.js (t = homeCopy.en or .th). %>
 <!-- Hero -->
 <section class="relative pt-16 pb-24 overflow-hidden bg-white">
   <div class="container mx-auto px-6 relative z-10">
@@ -5,37 +6,32 @@
       <div>
         <div class="flex flex-wrap items-center gap-3 mb-6">
           <div class="flex items-center gap-2 bg-paper px-3 py-1 rounded-full border border-black/5">
-            <span class="text-[10px] font-bold text-ink/50 tracking-tight">PART OF PATTAYA RENT A CAR &middot; 1,200+ GOOGLE REVIEWS</span>
+            <span class="text-[10px] font-bold text-ink/50 tracking-tight"><%- t.badgeGroup %></span>
           </div>
           <div class="flex items-center gap-1.5 bg-primary/10 px-3 py-1 rounded-full">
-            <span class="text-[10px] font-bold text-primary tracking-tight">RESPONDS WITHIN 5 MINUTES</span>
+            <span class="text-[10px] font-bold text-primary tracking-tight"><%- t.badgeReply %></span>
           </div>
         </div>
 
         <h1 class="font-display text-4xl md:text-6xl font-bold leading-[1.1] mb-6 text-ink">
-          Motorbike &amp; Scooter <br>
-          Rental in <span class="text-primary">Pattaya</span>
+          <%- t.h1 %>
         </h1>
 
         <p class="text-lg md:text-xl text-ink/60 leading-relaxed mb-10 max-w-xl">
-          Motorbike &amp; scooter rental from our Central Pattaya office since 2009. Well-maintained Yamaha and Honda automatics, helmets included, and friendly support.
+          <%- t.intro %>
         </p>
 
         <div class="flex flex-wrap gap-4">
+          <% t.chips.forEach(function(chip) { %>
           <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
-            <span class="font-bold text-sm">16+ Years in Pattaya</span>
+            <span class="font-bold text-sm"><%- chip %></span>
           </div>
-          <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
-            <span class="font-bold text-sm">10,000+ Happy Customers</span>
-          </div>
-          <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
-            <span class="font-bold text-sm">Helmets Included</span>
-          </div>
+          <% }); %>
         </div>
       </div>
 
       <div class="relative" id="search-bikes">
-        <%- include('../components/date-picker') %>
+        <%- include('../components/date-picker', { pickerLabels: t.picker }) %>
       </div>
     </div>
   </div>
@@ -45,9 +41,9 @@
 <section class="py-12 bg-paper border-y border-black/5">
   <div class="container mx-auto px-6">
     <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
-      <span class="text-xs font-black uppercase tracking-widest text-ink/50">Since 2009</span>
-      <span class="text-xs font-black uppercase tracking-widest text-ink/50">1,200+ Google Reviews (Group)</span>
-      <span class="text-xs font-black uppercase tracking-widest text-ink/50">Insured Bikes</span>
+      <% t.trust.forEach(function(item) { %>
+      <span class="text-xs font-black uppercase tracking-widest text-ink/50"><%- item %></span>
+      <% }); %>
     </div>
   </div>
 </section>
@@ -56,9 +52,9 @@
 <section id="fleet" class="py-24 bg-paper">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-      <span class="eyebrow mx-auto">Our Fleet</span>
-      <h2 class="font-display text-4xl font-bold mb-4 text-ink">Available Motorbikes</h2>
-      <p class="text-ink/50 max-w-2xl mx-auto">Well-maintained, reliable bikes for your Pattaya adventure.</p>
+      <span class="eyebrow mx-auto"><%- t.fleet.eyebrow %></span>
+      <h2 class="font-display text-4xl font-bold mb-4 text-ink"><%- t.fleet.heading %></h2>
+      <p class="text-ink/50 max-w-2xl mx-auto"><%- t.fleet.sub %></p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -70,22 +66,24 @@
         </div>
         <div class="p-6">
           <div class="mb-4">
-            <h3 class="font-display text-xl font-bold text-ink"><a href="<%= bike.slug ? '/bikes/' + bike.slug + '/' : '#fleet' %>" class="hover:text-primary transition-colors"><%= bike.name %></a></h3>
-            <p class="text-xs text-ink/40 font-bold uppercase tracking-widest"><%= bike.transmission %> Transmission</p>
+            <h3 class="font-display text-xl font-bold text-ink"><a href="<%= bike.slug ? t.links.bikePrefix + bike.slug + '/' : '#fleet' %>" class="hover:text-primary transition-colors"><%= bike.name %></a></h3>
+            <p class="text-xs text-ink/40 font-bold uppercase tracking-widest"><%= bike.transmission %> <%- t.fleet.transmission %></p>
           </div>
           <div class="pt-4 border-t border-black/5">
-            <a href="/#search-bikes" class="block text-center bg-ink text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-primary transition-colors">Book Now</a>
+            <a href="<%= t.links.search %>" class="block text-center bg-ink text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-primary transition-colors"><%- t.fleet.book %></a>
           </div>
         </div>
       </div>
       <% }); %>
     </div>
-        <p class="mt-8 text-center">
-      <a href="/guides/nmax-vs-pcx/" class="text-primary font-bold text-sm hover:underline">Not sure which scooter to pick? Compare the Nmax vs the PCX &rarr;</a>
+    <p class="mt-8 text-center">
+      <a href="<%= t.links.compare %>" class="text-primary font-bold text-sm hover:underline"><%- t.fleet.compareLink %></a>
     </p>
+    <% if (t.links.monthly) { %>
     <p class="mt-2 text-center">
-      <a href="/monthly-rental/" class="text-primary font-bold text-sm hover:underline">Staying a month or longer? See monthly rental rates &rarr;</a>
+      <a href="<%= t.links.monthly %>" class="text-primary font-bold text-sm hover:underline"><%- t.fleet.monthlyLink %></a>
     </p>
+    <% } %>
   </div>
 </section>
 
@@ -107,8 +105,8 @@
 <section class="py-24 bg-ink text-white">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="font-display text-4xl font-bold mb-4">What Our Clients Say</h2>
-      <p class="text-white/50">Join thousands of happy travelers who trust us in Pattaya.</p>
+      <h2 class="font-display text-4xl font-bold mb-4"><%- t.reviews.heading %></h2>
+      <p class="text-white/50"><%- t.reviews.sub %></p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -138,34 +136,16 @@
   <div class="container mx-auto px-6">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
       <div>
-        <span class="eyebrow">Our Service</span>
-        <h2 class="font-display text-4xl font-bold mb-8 text-ink leading-tight">Why riders choose <br> Pattaya Rent a Bike</h2>
+        <span class="eyebrow"><%- t.why.eyebrow %></span>
+        <h2 class="font-display text-4xl font-bold mb-8 text-ink leading-tight"><%- t.why.heading %></h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <% t.why.cards.forEach(function(card) { %>
           <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
-            <h4 class="font-bold">Open Daily</h4>
-            <p class="text-sm text-ink/50 leading-relaxed"><%= site.office.hours %></p>
+            <h4 class="font-bold"><%- card[0] %></h4>
+            <p class="text-sm text-ink/50 leading-relaxed"><%- card[1] || site.office.hours %></p>
           </div>
-          <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
-            <h4 class="font-bold">Insurance Included</h4>
-            <p class="text-sm text-ink/50 leading-relaxed">Every bike comes with compulsory government insurance (Po Lo Bo), covering basic medical costs.</p>
-          </div>
-          <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
-            <h4 class="font-bold">Office Pickup</h4>
-            <p class="text-sm text-ink/50 leading-relaxed">Central location for easy pickup and return.</p>
-          </div>
-          <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
-            <h4 class="font-bold">Best Fleet</h4>
-            <p class="text-sm text-ink/50 leading-relaxed">Modern, well-maintained bikes only. No old stock.</p>
-          </div>
-          <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
-            <h4 class="font-bold">Unlimited Mileage</h4>
-            <p class="text-sm text-ink/50 leading-relaxed">No hidden restrictions on how far you ride.</p>
-          </div>
-          <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
-            <h4 class="font-bold">Trusted Since 2009</h4>
-            <p class="text-sm text-ink/50 leading-relaxed">Part of Pattaya Rent a Car, with 1,200+ Google reviews from travellers around the world.</p>
-          </div>
+          <% }); %>
         </div>
       </div>
 
@@ -191,36 +171,18 @@
 <section class="py-24 bg-paper">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-      <span class="eyebrow mx-auto">Before You Book</span>
-      <h2 class="font-display text-4xl font-bold mb-4 text-ink">Rental Requirements &amp; Policy</h2>
-      <p class="text-ink/50 max-w-2xl mx-auto">Everything you need to know before picking up your bike.</p>
+      <span class="eyebrow mx-auto"><%- t.requirements.eyebrow %></span>
+      <h2 class="font-display text-4xl font-bold mb-4 text-ink"><%- t.requirements.heading %></h2>
+      <p class="text-ink/50 max-w-2xl mx-auto"><%- t.requirements.sub %></p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% t.requirements.cards.forEach(function(card) { %>
       <div class="card p-6 space-y-2">
-        <h4 class="font-bold">Documents Required</h4>
-        <p class="text-sm text-ink/50 leading-relaxed">Your original passport and a valid driving license.</p>
+        <h4 class="font-bold"><%- card[0] %></h4>
+        <p class="text-sm text-ink/50 leading-relaxed"><%- card[1] %></p>
       </div>
-      <div class="card p-6 space-y-2">
-        <h4 class="font-bold">Security Deposit</h4>
-        <p class="text-sm text-ink/50 leading-relaxed">A 1,000 THB cash deposit is required at pickup, refunded on return.</p>
-      </div>
-      <div class="card p-6 space-y-2">
-        <h4 class="font-bold">Insurance Included</h4>
-        <p class="text-sm text-ink/50 leading-relaxed">Every bike comes with compulsory government insurance (Po Lo Bo), covering basic medical costs.</p>
-      </div>
-      <div class="card p-6 space-y-2">
-        <h4 class="font-bold">Helmets Included</h4>
-        <p class="text-sm text-ink/50 leading-relaxed">Two helmets are provided with every rental at no extra cost.</p>
-      </div>
-      <div class="card p-6 space-y-2">
-        <h4 class="font-bold">Pickup &amp; Return Only</h4>
-        <p class="text-sm text-ink/50 leading-relaxed">All rentals are collected and returned at our Central Pattaya office &mdash; we don't offer hotel delivery.</p>
-      </div>
-      <div class="card p-6 space-y-2">
-        <h4 class="font-bold">Well-Maintained Fleet</h4>
-        <p class="text-sm text-ink/50 leading-relaxed">Every bike is regularly serviced and checked before it goes out.</p>
-      </div>
+      <% }); %>
     </div>
   </div>
 </section>
@@ -229,8 +191,8 @@
 <section class="py-24 bg-white">
   <div class="container mx-auto px-6 max-w-3xl">
     <div class="text-center mb-16">
-      <span class="eyebrow mx-auto">Information</span>
-      <h2 class="font-display text-4xl font-bold mb-4 text-ink">Common Questions</h2>
+      <span class="eyebrow mx-auto"><%- t.faq.eyebrow %></span>
+      <h2 class="font-display text-4xl font-bold mb-4 text-ink"><%- t.faq.heading %></h2>
     </div>
 
     <div class="space-y-4">
@@ -243,9 +205,11 @@
         <div class="px-6 pb-6 text-sm text-ink/60 leading-relaxed"><%= faq.a %></div>
       </details>
       <% }); %>
+      <% if (t.faq.guideHref) { %>
       <p class="mt-8 text-center">
-      <a href="/guides/motorbike-insurance-in-thailand/" class="text-primary font-bold text-sm hover:underline">Want the full breakdown of what our insurance covers? Read our motorbike insurance guide &rarr;</a>
+      <a href="<%= t.faq.guideHref %>" class="text-primary font-bold text-sm hover:underline"><%- t.faq.guideLink %></a>
       </p>
+      <% } %>
     </div>
   </div>
 </section>

@@ -57,7 +57,7 @@ export const bikePages = {
       body: [
         "At 125cc, the GT 125 has plenty of power for getting around town, weaving through traffic and finding parking, without the extra weight and bulk of a bigger scooter. It's an easy bike to feel confident on within the first few minutes of riding.",
         "Like every bike in our fleet, the GT 125 comes with a helmet and the compulsory government insurance (Po Lo Bo), which covers basic medical costs. To rent it you'll need your original passport, a valid driving license and a 1000 baht cash deposit - the same requirement across our whole fleet.",
-        "All bikes are picked up and returned at our central Pattaya office - we don't offer delivery, which lets us make sure your bike is properly adjusted and all the paperwork is handled correctly before you ride off."
+        "All bikes are picked up and returned at our Pratumnak office - we don't offer delivery, which lets us make sure your bike is properly adjusted and all the paperwork is handled correctly before you ride off."
       ],
       faqs: [
         { q: "Is the GT 125 good for a first-time rider in Thailand?", a: "Yes - it's the lightest, easiest bike in our fleet and a common first choice. It's still a good idea to take it slow for your first few minutes in Pattaya traffic, even if you've ridden scooters before." },
@@ -75,7 +75,7 @@ export const bikePages = {
       body: [
         "ด้วยเครื่องยนต์ขนาด 125cc รถรุ่นนี้มีกำลังเพียงพอสำหรับการขับขี่ในเมือง แทรกตัวในสภาพจราจร และหาที่จอดได้สะดวก โดยไม่ต้องแบกน้ำหนักและขนาดตัวถังที่ใหญ่เหมือนสกู๊ตเตอร์รุ่นใหญ่ เป็นรถที่ทำให้คุณมั่นใจได้ตั้งแต่ไม่กี่นาทีแรกที่ขับ",
         "เช่นเดียวกับรถทุกคันในฝูงบินของเรา GT 125 มาพร้อมหมวกกันน็อคและประกันภัยภาคบังคับ (พ.ร.บ.) ซึ่งครอบคลุมค่ารักษาพยาบาลเบื้องต้น ในการเช่าคุณต้องใช้พาสปอร์ตตัวจริง ใบขับขี่ที่ยังไม่หมดอายุ และเงินมัดจำสด 1000 บาท เหมือนกับรถทุกคันในฝูงบินของเรา",
-        "รถทุกคันรับและคืนที่สำนักงานของเราในพัทยากลางเท่านั้น เราไม่มีบริการส่งรถถึงที่พัก เพื่อให้แน่ใจว่ารถถูกปรับตั้งอย่างเหมาะสมและเอกสารทุกอย่างถูกต้องก่อนที่คุณจะออกเดินทาง"
+        "รถทุกคันรับและคืนที่สำนักงานของเราที่พระตำหนักเท่านั้น เราไม่มีบริการส่งรถถึงที่พัก เพื่อให้แน่ใจว่ารถถูกปรับตั้งอย่างเหมาะสมและเอกสารทุกอย่างถูกต้องก่อนที่คุณจะออกเดินทาง"
       ],
       faqs: [
         { q: "GT 125 เหมาะกับผู้ที่ขับมอเตอร์ไซค์ในไทยเป็นครั้งแรกหรือไม่?", a: "เหมาะมาก เป็นรถที่เบาที่สุดและขับง่ายที่สุดในฝูงบินของเรา และเป็นตัวเลือกแรกที่ลูกค้าหลายคนเลือก แนะนำให้ขับช้าๆ ในช่วงไม่กี่นาทีแรกที่เจอสภาพจราจรพัทยา แม้จะเคยขับสกู๊ตเตอร์มาก่อนก็ตาม" },
@@ -251,7 +251,7 @@ export const comparisonGuide = {
       "ในทางทฤษฎีแทบไม่มีความแตกต่างระหว่างสองรุ่นนี้เลย เครื่องยนต์ต่างกันเพียง 5cc ซึ่งคุณแทบไม่รู้สึกได้ในการขับขี่ประจำวัน ทั้งสองรุ่นซ้อนสองได้สบายและมีกำลังเพียงพอสำหรับทริปนอกเขตพัทยากลาง ไม่ว่าจะเป็นจอมเทียนหรือไกลกว่านั้น",
       "ความแตกต่างที่แท้จริงอยู่ที่บุคลิก Honda PCX สร้างชื่อเสียงมาหลายปีจากการใช้งานจริงทั่วประเทศไทยในเรื่องการขับขี่ที่นุ่มนวลและพื้นวางเท้าที่กว้างขวางจริงๆ ซึ่งมีประโยชน์หากคุณตัวสูงหรือขับพร้อมกระเป๋าหรือของซื้อของ ส่วน Yamaha Nmax จะเน้นความสปอร์ตในการควบคุมและดีไซน์มากกว่าเล็กน้อย พร้อมช่องเก็บของใต้เบาะที่มีประโยชน์เช่นกัน",
       "หากต้องการตัวเลือกที่สาม Yamaha Aerox ของเราใช้เครื่องยนต์เดียวกันกับ Nmax แต่มาในดีไซน์ที่คมและสปอร์ตกว่า น่าสนใจหากดีไซน์เป็นเรื่องสำคัญที่สุดสำหรับคุณ และหากต้องการรถที่เบากว่าสำหรับขับคนเดียวในเมือง Yamaha GT 125 คือตัวเลือกที่คุ้มค่าที่สุดของเรา",
-      "ไม่ว่าคุณจะเลือกรุ่นไหน รถทุกคันในฝูงบินของเรามาพร้อมหมวกกันน็อคและประกันภัยภาคบังคับ (พ.ร.บ.) ในการเช่าคุณต้องใช้พาสปอร์ตตัวจริง ใบขับขี่ที่ยังไม่หมดอายุ และเงินมัดจำสด 1000 บาท และรถทุกคันรับและคืนที่สำนักงานของเราในพัทยากลาง"
+      "ไม่ว่าคุณจะเลือกรุ่นไหน รถทุกคันในฝูงบินของเรามาพร้อมหมวกกันน็อคและประกันภัยภาคบังคับ (พ.ร.บ.) ในการเช่าคุณต้องใช้พาสปอร์ตตัวจริง ใบขับขี่ที่ยังไม่หมดอายุ และเงินมัดจำสด 1000 บาท และรถทุกคันรับและคืนที่สำนักงานของเราที่พระตำหนัก"
     ],
     verdict: "ไม่มีตัวเลือกไหนผิด หากต้องการการขับขี่ที่นุ่มนวลและกว้างขวางที่สุด เลือก PCX หากต้องการความรู้สึกสปอร์ตขึ้นอีกนิด เลือก Nmax ในทางปฏิบัติมักขึ้นอยู่กับว่ารุ่นไหนว่างในวันที่คุณต้องการ",
     faqs: [
