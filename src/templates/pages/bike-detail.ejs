@@ -12,9 +12,9 @@
       <span class="eyebrow"><%= bike.engine %> &bull; <%= bike.transmission %></span>
       <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
       <p class="text-ink/60 text-lg mb-8"><%= content.tagline %></p>
-      <a href="/#search-bikes" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase shadow-lg shadow-primary/20 transition-all active:scale-95 inline-block">
-        <%= ui.checkAvailability %>
-      </a>
+      <div id="search-bikes">
+        <%- include('../components/date-picker', { pickerLabels: ui.picker, bikeSlug: bike.slug }) %>
+      </div>
     </div>
     <div class="aspect-[4/3] relative overflow-hidden rounded-3xl bg-white">
       <img src="<%= bike.image %>" alt="<%= bike.name %>" class="w-full h-full object-cover" referrerpolicy="no-referrer" loading="eager" fetchpriority="high">

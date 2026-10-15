@@ -19,7 +19,8 @@ export const uiLabels = {
     viewAllBikes: "View all bikes",
     compareGuideLink: "Compare Nmax vs PCX",
     verdictHeading: "Our Verdict",
-    tableSpecHeading: "Side-by-Side Comparison"
+    tableSpecHeading: "Side-by-Side Comparison",
+    picker: null
   },
   th: {
     home: "หน้าแรก",
@@ -31,7 +32,15 @@ export const uiLabels = {
     viewAllBikes: "ดูรถทั้งหมด",
     compareGuideLink: "เปรียบเทียบ Nmax vs PCX",
     verdictHeading: "สรุปผลการเปรียบเทียบ",
-    tableSpecHeading: "เปรียบเทียบข้อมูลจำเพาะ"
+    tableSpecHeading: "เปรียบเทียบข้อมูลจำเพาะ",
+    picker: {
+      heading: "เช็คคิวว่าง",
+      pickup: "วันและเวลารับรถ",
+      ret: "วันและเวลาคืนรถ",
+      select: "เลือกวันที่",
+      search: "ค้นหารถว่าง",
+      note: "จองก่อน ชำระทีหลัง"
+    }
   }
 };
 

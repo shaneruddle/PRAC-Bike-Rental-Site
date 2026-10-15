@@ -1,21 +1,25 @@
+<%
+  const dp = Object.assign({ heading: 'Find Your Bike', pickup: 'Pickup Date &amp; Time', ret: 'Return Date &amp; Time', select: 'Select date', search: 'Search Available Bikes', note: 'Book Now, Pay Later' }, (typeof pickerLabels !== 'undefined' && pickerLabels) || {});
+  const dpBike = (typeof bikeSlug !== 'undefined' && bikeSlug) || '';
+%>
 <div class="card-compact relative z-20">
-    <h2 class="text-2xl font-black mb-8 text-center italic text-ink tracking-tight uppercase">Find Your Bike</h2>
-    <form id="booking-form" class="space-y-6">
+    <h2 class="text-2xl font-black mb-8 text-center italic text-ink tracking-tight uppercase"><%- dp.heading %></h2>
+    <form id="booking-form" class="space-y-6" data-bike="<%= dpBike %>">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-                <label class="block text-[10px] font-black uppercase text-gray-400 mb-2 ml-1 tracking-widest">Pickup Date &amp; Time</label>
+                <label class="block text-[10px] font-black uppercase text-gray-400 mb-2 ml-1 tracking-widest"><%- dp.pickup %></label>
                 <button type="button" id="dp-trigger-pickup" class="dp-field is-placeholder">
                     <svg class="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <span id="dp-val-pickup">Select date</span>
+                    <span id="dp-val-pickup"><%- dp.select %></span>
                 </button>
                 <input type="hidden" name="pickup_date" id="dp-input-pickup" required />
                 <input type="hidden" name="pickup_time" id="dp-input-pickup-time" value="09:30" />
             </div>
             <div>
-                <label class="block text-[10px] font-black uppercase text-gray-400 mb-2 ml-1 tracking-widest">Return Date &amp; Time</label>
+                <label class="block text-[10px] font-black uppercase text-gray-400 mb-2 ml-1 tracking-widest"><%- dp.ret %></label>
                 <button type="button" id="dp-trigger-return" class="dp-field is-placeholder">
                     <svg class="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <span id="dp-val-return">Select date</span>
+                    <span id="dp-val-return"><%- dp.select %></span>
                 </button>
                 <input type="hidden" name="dropoff_date" id="dp-input-return" required />
                 <input type="hidden" name="dropoff_time" id="dp-input-return-time" value="09:30" />
@@ -23,12 +27,12 @@
         </div>
 
         <button type="button" id="dp-open" class="btn-primary w-full group mt-4">
-            Search Available Bikes
+            <%- dp.search %>
             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
 
         <p class="text-center text-[10px] text-gray-400 uppercase font-black tracking-tighter mt-4 opacity-60">
-            Book Now, Pay Later
+            <%- dp.note %>
         </p>
     </form>
 </div>
