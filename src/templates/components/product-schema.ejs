@@ -1,0 +1,24 @@
+<%# Product JSON-LD for one bike. Offers come from build-time pricing-engine quotes;
+    without prices it falls back to a plain Product (as before). %>
+<script type="application/ld+json">
+<%- JSON.stringify(Object.assign({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": bike.name + " rental",
+  "category": "Motorbike Rental",
+  "image": bike.image,
+  "brand": { "@type": "Brand", "name": bike.name.split(' ')[0] }
+}, bike.price ? {
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "THB",
+    "lowPrice": bike.price.from,
+    "highPrice": Math.max.apply(null, [bike.price[3], bike.price[7], bike.price[30]].filter(Boolean)),
+    "offerCount": [bike.price[3], bike.price[7], bike.price[30]].filter(Boolean).length,
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": prices.validUntil,
+    "url": "https://" + site.domain + "/bikes/" + bike.slug + "/",
+    "seller": { "@type": "Organization", "name": site.name }
+  }
+} : {})) %>
+</script>

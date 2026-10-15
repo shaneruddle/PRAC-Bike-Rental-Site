@@ -20,6 +20,10 @@ export const uiLabels = {
     compareGuideLink: "Compare Nmax vs PCX",
     verdictHeading: "Our Verdict",
     tableSpecHeading: "Side-by-Side Comparison",
+    rate3: "3-day rental",
+    rate7: "Weekly rate",
+    rate30: "30-day rate",
+    perDay: "/day",
     picker: null
   },
   th: {
@@ -33,6 +37,10 @@ export const uiLabels = {
     compareGuideLink: "เปรียบเทียบ Nmax vs PCX",
     verdictHeading: "สรุปผลการเปรียบเทียบ",
     tableSpecHeading: "เปรียบเทียบข้อมูลจำเพาะ",
+    rate3: "เช่า 3 วัน",
+    rate7: "ราคารายสัปดาห์",
+    rate30: "เช่า 30 วัน",
+    perDay: "/วัน",
     picker: {
       heading: "เช็คคิวว่าง",
       pickup: "วันและเวลารับรถ",

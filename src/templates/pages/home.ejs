@@ -68,6 +68,9 @@
           <div class="mb-4">
             <h3 class="font-display text-xl font-bold text-ink"><a href="<%= bike.slug ? t.links.bikePrefix + bike.slug + '/' : '#fleet' %>" class="hover:text-primary transition-colors"><%= bike.name %></a></h3>
             <p class="text-xs text-ink/40 font-bold uppercase tracking-widest"><%= bike.transmission %> <%- t.fleet.transmission %></p>
+            <% if (bike.price) { %>
+            <p class="text-primary font-bold text-sm mt-2"><%- t.fleet.from %> &#3647;<%= bike.price.from.toLocaleString() %><%- t.fleet.perDay %></p>
+            <% } %>
           </div>
           <div class="pt-4 border-t border-black/5">
             <a href="<%= t.links.search %>" class="block text-center bg-ink text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-primary transition-colors"><%- t.fleet.book %></a>
@@ -79,6 +82,11 @@
     <p class="mt-8 text-center">
       <a href="<%= t.links.compare %>" class="text-primary font-bold text-sm hover:underline"><%- t.fleet.compareLink %></a>
     </p>
+    <% if (prices) { %>
+    <p class="mt-2 text-center">
+      <a href="/prices/" class="text-primary font-bold text-sm hover:underline"><%- t.fleet.pricesLink %></a>
+    </p>
+    <% } %>
     <% if (t.links.monthly) { %>
     <p class="mt-2 text-center">
       <a href="<%= t.links.monthly %>" class="text-primary font-bold text-sm hover:underline"><%- t.fleet.monthlyLink %></a>
@@ -87,18 +95,9 @@
   </div>
 </section>
 
-<!-- Structured data: fleet as Products. No aggregateRating: the only business-wide rating
-     available is the car business's, which doesn't describe these bikes. -->
+<!-- Structured data: fleet as Products with live per-day offers (see components/product-schema). -->
 <% fleet.forEach(function(bike) { %>
-<script type="application/ld+json">
-<%- JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": bike.name,
-  "category": "Motorbike Rental",
-  "image": bike.image
-}) %>
-</script>
+<%- include('../components/product-schema', { site, bike, prices }) %>
 <% }); %>
 
 <!-- Testimonials -->

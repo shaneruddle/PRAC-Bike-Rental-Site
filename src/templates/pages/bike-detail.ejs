@@ -11,7 +11,17 @@
     <div>
       <span class="eyebrow"><%= bike.engine %> &bull; <%= bike.transmission %></span>
       <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
-      <p class="text-ink/60 text-lg mb-8"><%= content.tagline %></p>
+      <p class="text-ink/60 text-lg mb-6"><%= content.tagline %></p>
+      <% if (bike.price) { %>
+      <div class="flex flex-wrap gap-3 mb-8">
+        <% [[3, ui.rate3], [7, ui.rate7], [30, ui.rate30]].forEach(function(r) { if (!bike.price[r[0]]) return; %>
+        <div class="bg-white rounded-xl border border-black/5 px-4 py-2.5">
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-ink/40"><%= r[1] %></span>
+          <span class="font-bold text-ink">&#3647;<%= bike.price[r[0]].toLocaleString() %></span><span class="text-ink/50 text-sm"><%= ui.perDay %></span>
+        </div>
+        <% }); %>
+      </div>
+      <% } %>
       <div id="search-bikes">
         <%- include('../components/date-picker', { pickerLabels: ui.picker, bikeSlug: bike.slug }) %>
       </div>
@@ -62,17 +72,8 @@
   <% } %>
 </section>
 
-<!-- Structured data: Product (no pricing — rates are dynamic via the booking engine's
-     live quote API and would go stale here; see claude/bike-site-ranking-audit-aug-2026.md) -->
-<script type="application/ld+json">
-<%- JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": bike.name,
-  "category": "Motorbike Rental",
-  "image": bike.image
-}) %>
-</script>
+<!-- Structured data: Product with live per-day offers -->
+<%- include('../components/product-schema', { site, bike, prices }) %>
 
 <!-- Structured data: FAQPage -->
 <script type="application/ld+json">

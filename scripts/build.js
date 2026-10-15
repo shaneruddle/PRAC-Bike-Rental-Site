@@ -6,7 +6,8 @@ import ejs from "ejs";
 import fs from "fs-extra";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { site, fleet, faqs, reviews } from "../src/data/site.js";
+import { site, fleet as baseFleet, faqs, reviews } from "../src/data/site.js";
+import { fetchPrices } from "./prices.js";
 import { homeCopy } from "../src/data/homeCopy.js";
 import { licenceGuide, jomtienPage } from "../src/data/guides.js";
 import { bikeSlugs, bikePages, uiLabels, comparisonGuide, monthlyRentalPage, insuranceGuide } from "../src/data/bikePages.js";
@@ -51,7 +52,7 @@ async function renderPage({
 }) {
   const pageBody = await ejs.renderFile(
     path.join(templatesDir, "pages", templateFile),
-    templateData,
+    { prices, ...templateData },
     { root: templatesDir }
   );
 
@@ -80,8 +81,32 @@ async function renderPage({
   addSitemapUrl(urlPath, priority);
 }
 
+const fmtDate = (isoDate) =>
+  new Date(isoDate + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+
+// Live prices from the pricing engine. PRICES_FIXTURE=<json file> lets a local build run
+// without network access; otherwise a failed fetch just means no prices on the pages.
+async function loadPrices() {
+  const fixture = process.env.PRICES_FIXTURE;
+  const raw = fixture ? JSON.parse(await fs.readFile(fixture, "utf8")) : await fetchPrices(baseFleet.map((b) => b.priceClass));
+  if (!raw) {
+    console.warn("Prices: pricing engine unavailable - building without prices");
+    return null;
+  }
+  const validUntil = new Date(Date.parse(raw.asOf + "T00:00:00Z") + 7 * 86400000).toISOString().slice(0, 10);
+  return { ...raw, validUntil, asOfLabel: fmtDate(raw.asOf), startLabel: fmtDate(raw.startDate) };
+}
+
+let prices = null;
+let fleet = baseFleet;
+
 async function build() {
   await fs.emptyDir(distDir);
+
+  prices = await loadPrices();
+  fleet = baseFleet.map((b) => ({ ...b, price: (prices && prices.byClass[b.priceClass]) || null }));
+  const lowest = prices ? Math.min(...fleet.filter((b) => b.price).map((b) => b.price.from)) : null;
+  if (prices) console.log(`Prices: ${JSON.stringify(prices.byClass)} (rentals from ${prices.startDate})`);
 
   // Copy static SEO/GEO files (robots.txt, llms.txt) as-is.
   if (await fs.pathExists(publicDir)) {
@@ -93,7 +118,7 @@ async function build() {
     templateFile: "home.ejs",
     templateData: { site, fleet, faqs, reviews, t: homeCopy.en },
     title: homeCopy.en.meta.title,
-    description: homeCopy.en.meta.description,
+    description: lowest ? homeCopy.en.meta.description.replace("Book online", `From \u0E3F${lowest}/day. Book online`) : homeCopy.en.meta.description,
     urlPath: "/",
     lang: "en",
     altHref: "/th/",
@@ -133,7 +158,7 @@ async function build() {
         urlPath: enPath,
       },
       title: page.en.title,
-      description: page.en.description,
+      description: bike.price ? `${page.en.description} From \u0E3F${bike.price.from}/day.` : page.en.description,
       urlPath: enPath,
       lang: "en",
       altHref: thPath,
@@ -239,6 +264,31 @@ async function build() {
     priority: "0.6",
   });
 
+  // Prices page (English only).
+  await renderPage({
+    templateFile: "prices.ejs",
+    templateData: { site, fleet, faqs: pricesFaqs(lowest) },
+    title: "Scooter & Motorbike Rental Prices in Pattaya",
+    description: lowest
+      ? `Current motorbike and scooter rental prices in Pattaya, from \u0E3F${lowest}/day. Daily, weekly and 30-day rates for Yamaha and Honda automatics, helmets and insurance included.`
+      : "Motorbike and scooter rental prices in Pattaya. Daily, weekly and 30-day rates for Yamaha and Honda automatics, helmets and insurance included.",
+    urlPath: "/prices/",
+    lang: "en",
+    priority: "0.8",
+  });
+
+  // llms.txt: replace the static pricing block with today's engine prices.
+  if (prices) {
+    const llmsPath = path.join(distDir, "llms.txt");
+    const llms = await fs.readFile(llmsPath, "utf8");
+    const lines = fleet.filter((b) => b.price).map((b) =>
+      `- ${b.name} (${b.engine}, ${b.transmission}): ${[3, 7, 30].filter((d) => b.price[d]).map((d) => `${b.price[d]}/day for ${d} days`).join(", ")}`);
+    const block = `## Fleet & Pricing (THB per day, rentals starting ${prices.startDate}, updated ${prices.asOf})\n${lines.join("\n")}\n\nPrices change with season and demand - search your dates at https://${site.domain}/ for an exact price. Rentals over 30 days are quoted individually. Full price list: https://${site.domain}/prices/`;
+    const updated = llms.replace(/## Fleet & Pricing[\s\S]*?confirm exact price and availability at time of booking\./, block);
+    if (updated === llms) console.warn("Prices: llms.txt pricing block not found - left unchanged");
+    await fs.outputFile(llmsPath, updated);
+  }
+
   // Generate sitemap.xml with a fresh lastmod on every build.
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -248,6 +298,24 @@ ${sitemapUrls.join("\n")}
   await fs.outputFile(path.join(distDir, "sitemap.xml"), sitemap);
 
   console.log(`Build complete: ${sitemapUrls.length} pages, dist/sitemap.xml, dist/robots.txt, dist/llms.txt`);
+}
+
+function pricesFaqs(lowest) {
+  const gt = fleet.find((b) => b.slug === "yamaha-gt-125");
+  const nmax = fleet.find((b) => b.slug === "yamaha-nmax");
+  const priced = lowest && gt && gt.price && nmax && nmax.price;
+  return [
+    {
+      q: "How much does it cost to rent a scooter in Pattaya?",
+      a: priced
+        ? `With us, prices currently start from \u0E3F${lowest} per day. A Yamaha GT 125 is \u0E3F${gt.price[3]} per day for a 3-day rental, and a Yamaha Nmax or Honda PCX is \u0E3F${nmax.price[3]} per day. Weekly and 30-day rentals cost less per day.`
+        : "Prices change with the season and demand. Search your dates on our homepage for an instant price, or WhatsApp us for a quote.",
+    },
+    { q: "Is it cheaper to rent a scooter by the week or month?", a: "Yes. The per-day price drops for weekly rentals and again for 30-day rentals. Rentals longer than 30 days are quoted individually." },
+    { q: "Are helmets and insurance included in the price?", a: "Yes. Every rental includes two helmets and the compulsory government insurance (Po Lo Bo), which covers basic medical costs. It doesn't cover damage to the bike." },
+    { q: "Is there a deposit?", a: "Yes, a 1,000 baht cash deposit at pickup, refunded when you return the bike. We don't keep your passport." },
+    { q: "Why might my price be different from this page?", a: "Prices are set by season and, for bookings in the next few days, by how many bikes are free. The price shown when you search your dates is the one you'll pay." },
+  ];
 }
 
 build().catch((err) => {

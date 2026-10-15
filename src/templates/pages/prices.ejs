@@ -1,0 +1,89 @@
+<!-- Prices page: build-time quotes from the live pricing engine (scripts/prices.js) -->
+<div class="container mx-auto px-6 pt-8 text-xs text-ink/40">
+  <a href="/" class="hover:text-primary transition-colors">Home</a>
+  <span class="mx-2">/</span>
+  <span class="text-ink/60">Prices</span>
+</div>
+
+<section class="py-10 md:py-16 bg-paper">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <span class="eyebrow">Prices</span>
+      <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink">Motorbike &amp; Scooter Rental Prices in Pattaya</h1>
+      <p class="text-ink/60 text-lg">Current per-day prices for every bike in our fleet. Helmets and the compulsory government insurance (Po Lo Bo) are included, and the longer you rent, the less you pay per day.</p>
+    </div>
+    <div id="search-bikes">
+      <%- include('../components/date-picker', { bikeSlug: 'prices' }) %>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <% if (prices) { %>
+    <div class="overflow-x-auto rounded-2xl border border-black/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-paper">
+            <th class="p-4 text-left font-bold text-ink uppercase tracking-widest text-xs">Bike</th>
+            <th class="p-4 text-right font-bold text-ink uppercase tracking-widest text-xs">3-day rental</th>
+            <th class="p-4 text-right font-bold text-ink uppercase tracking-widest text-xs">Weekly rate</th>
+            <th class="p-4 text-right font-bold text-ink uppercase tracking-widest text-xs">30-day rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% fleet.forEach(function(bike, i) { if (!bike.price) return; %>
+          <tr class="<%= i % 2 === 0 ? 'bg-white' : 'bg-paper/50' %> border-t border-black/5">
+            <td class="p-4"><a href="/bikes/<%= bike.slug %>/" class="font-bold text-ink hover:text-primary"><%= bike.name %></a><span class="block text-xs text-ink/40"><%= bike.engine %> &bull; <%= bike.transmission %></span></td>
+            <% [3, 7, 30].forEach(function(d) { %>
+            <td class="p-4 text-right text-ink/80"><%= bike.price[d] ? '฿' + bike.price[d].toLocaleString() : '-' %><span class="text-ink/40 text-xs"><%= bike.price[d] ? ' /day' : '' %></span></td>
+            <% }); %>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-ink/40 mt-4">Per-day prices for a rental starting <%= prices.startLabel %>, updated <%= prices.asOfLabel %>. Your exact price is shown when you search your dates.</p>
+    <% } else { %>
+    <p class="text-ink/70">Prices change with the season and how busy we are. Search your dates above for an instant price, or WhatsApp us for a quote.</p>
+    <% } %>
+
+    <h2 class="font-display text-2xl font-bold mt-12 mb-4 text-ink">How our prices work</h2>
+    <p class="text-ink/70 mb-4 leading-relaxed">Prices are set by season, so the same bike costs more over Christmas and New Year than in the quieter months. Short-notice bookings can be priced differently depending on how many bikes are free, so the quickest way to get your exact price is to search your dates.</p>
+    <p class="text-ink/70 mb-4 leading-relaxed">Staying longer than 30 days? Monthly rentals are priced individually. See our <a href="/monthly-rental/" class="text-primary hover:underline">monthly rental page</a> or WhatsApp us for a quote.</p>
+
+    <h2 class="font-display text-2xl font-bold mt-12 mb-4 text-ink">What's included</h2>
+    <ul class="list-disc pl-6 space-y-2 text-ink/70 leading-relaxed">
+      <li>Two helmets with every rental</li>
+      <li>Compulsory government insurance (Po Lo Bo), covering basic medical costs - see our <a href="/guides/motorbike-insurance-in-thailand/" class="text-primary hover:underline">insurance guide</a></li>
+      <li>Unlimited mileage</li>
+      <li>A 1,000 baht cash deposit at pickup, refunded on return. We don't keep your passport.</li>
+      <li>Pickup and return at our Pratumnak office, 9am - 5pm every day. No delivery.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="py-16 bg-paper">
+  <div class="container mx-auto px-6 max-w-3xl">
+    <h2 class="font-display text-2xl font-bold mb-8 text-ink">Frequently Asked Questions</h2>
+    <% faqs.forEach(function(f) { %>
+    <details class="border-b border-black/5 py-4">
+      <summary class="font-bold cursor-pointer text-ink"><%= f.q %></summary>
+      <p class="text-ink/60 mt-2 leading-relaxed"><%= f.a %></p>
+    </details>
+    <% }); %>
+  </div>
+</section>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(function (f) {
+    return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } };
+  })
+}) %>
+</script>
+<% fleet.forEach(function(bike) { %>
+<%- include('../components/product-schema', { site, bike, prices }) %>
+<% }); %>

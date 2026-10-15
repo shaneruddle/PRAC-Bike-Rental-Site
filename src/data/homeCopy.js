@@ -24,6 +24,9 @@ export const homeCopy = {
       sub: "Well-maintained, reliable bikes for your Pattaya adventure.",
       transmission: "Transmission",
       book: "Book Now",
+      from: "From",
+      perDay: "/day",
+      pricesLink: "See all prices &rarr;", // (html)
       compareLink: "Not sure which scooter to pick? Compare the Nmax vs the PCX &rarr;", // (html)
       monthlyLink: "Staying a month or longer? See monthly rental rates &rarr;", // (html)
     },
@@ -85,6 +88,9 @@ export const homeCopy = {
       sub: "รถดูแลอย่างดี เชื่อถือได้ สำหรับการเที่ยวพัทยาของคุณ",
       transmission: "เกียร์",
       book: "จองเลย",
+      from: "เริ่มต้น",
+      perDay: "/วัน",
+      pricesLink: "ดูราคาทั้งหมด (ภาษาอังกฤษ) &rarr;", // (html)
       compareLink: "ยังเลือกไม่ได้? เปรียบเทียบ Nmax กับ PCX &rarr;", // (html)
       monthlyLink: null, // monthly page is English only
     },

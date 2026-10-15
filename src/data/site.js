@@ -33,6 +33,7 @@ export const fleet = [
   {
     name: "Yamaha GT 125",
     slug: "yamaha-gt-125",
+    priceClass: "GT", // pricing engine class (website_cars.type)
     engine: "125cc",
     transmission: "Auto",
     daily: 200,
@@ -43,6 +44,7 @@ export const fleet = [
   {
     name: "Yamaha Nmax",
     slug: "yamaha-nmax",
+    priceClass: "Premium Scooter", // pricing engine class (website_cars.type)
     engine: "155cc",
     transmission: "Auto",
     daily: 300,
@@ -53,6 +55,7 @@ export const fleet = [
   {
     name: "Honda PCX",
     slug: "honda-pcx",
+    priceClass: "Premium Scooter", // pricing engine class (website_cars.type)
     engine: "150cc",
     transmission: "Auto",
     daily: 300,
@@ -62,6 +65,7 @@ export const fleet = [
   {
     name: "Yamaha Aerox",
     slug: "yamaha-aerox",
+    priceClass: "New Aerox", // pricing engine class (website_cars.type)
     engine: "155cc",
     transmission: "Auto",
     daily: 300,
