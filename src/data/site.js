@@ -6,8 +6,8 @@ export const site = {
   domain: "pattayarentabike.com",
   contact: {
     email: "info@pattayarentacar.com",
-    phone: "+66 83 077 6928",
-    whatsapp: "https://wa.me/66830776928",
+    phone: "+66 86 332 9077",
+    whatsapp: "https://wa.me/66863329077",
     lineId: "@pattayarentacar",
   },
   office: {
@@ -15,7 +15,7 @@ export const site = {
     address: "359/119 Moo 12 Nongprue, Pattaya City, Chon Buri 20150",
     hours: "9am - 5pm, 365 days a year",
     mapEmbed:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62222.2495336179!2d100.7947462216797!3d12.91475260000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310296426421aecf%3A0x359024d542f838e5!2sPattaya%20Rent%20a%20Car!5e0!3m2!1sen!2sth!4v1778382551513!5m2!1sen!2sth",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888!2d100.867!3d12.915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31029642648812ad%3A0x4877cef83e384c32!2sPattaya%20Rent%20a%20Bike!5e0!3m2!1sen!2sth!4v1778382551513!5m2!1sen!2sth",
   },
   carRentalUrl: "https://www.pattayarentacar.com",
   logo: {

@@ -5,7 +5,7 @@
       <div>
         <div class="flex flex-wrap items-center gap-3 mb-6">
           <div class="flex items-center gap-2 bg-paper px-3 py-1 rounded-full border border-black/5">
-            <span class="text-[10px] font-bold text-ink/50 tracking-tight">&#9733;&#9733;&#9733;&#9733;&#9733; 1,000+ FIVE-STAR REVIEWS</span>
+            <span class="text-[10px] font-bold text-ink/50 tracking-tight">PART OF PATTAYA RENT A CAR &middot; 1,200+ GOOGLE REVIEWS</span>
           </div>
           <div class="flex items-center gap-1.5 bg-primary/10 px-3 py-1 rounded-full">
             <span class="text-[10px] font-bold text-primary tracking-tight">RESPONDS WITHIN 5 MINUTES</span>
@@ -18,7 +18,7 @@
         </h1>
 
         <p class="text-lg md:text-xl text-ink/60 leading-relaxed mb-10 max-w-xl">
-          The most trusted motorbike &amp; scooter rental service in the city. Professional maintenance, friendly support, and the best rates guaranteed.
+          Motorbike &amp; scooter rental from our Central Pattaya office since 2009. Well-maintained Yamaha and Honda automatics, helmets included, and friendly support.
         </p>
 
         <div class="flex flex-wrap gap-4">
@@ -46,7 +46,7 @@
   <div class="container mx-auto px-6">
     <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
       <span class="text-xs font-black uppercase tracking-widest text-ink/50">Since 2009</span>
-      <span class="text-xs font-black uppercase tracking-widest text-ink/50">Over 1,000 Five-Star Reviews</span>
+      <span class="text-xs font-black uppercase tracking-widest text-ink/50">1,200+ Google Reviews (Group)</span>
       <span class="text-xs font-black uppercase tracking-widest text-ink/50">Insured Bikes</span>
     </div>
   </div>
@@ -89,11 +89,8 @@
   </div>
 </section>
 
-<!-- Structured data: fleet as Products (no pricing — rates are dynamic via the booking
-     engine's live quote API and would go stale here; see claude/bike-site-ranking-audit-aug-2026.md.
-     aggregateRating (business-wide, matches LocalBusiness/bike-detail pages) keeps these eligible
-     for Product rich results per Google's requirement that at least one of offers/review/
-     aggregateRating be present. -->
+<!-- Structured data: fleet as Products. No aggregateRating: the only business-wide rating
+     available is the car business's, which doesn't describe these bikes. -->
 <% fleet.forEach(function(bike) { %>
 <script type="application/ld+json">
 <%- JSON.stringify({
@@ -101,12 +98,7 @@
   "@type": "Product",
   "name": bike.name,
   "category": "Motorbike Rental",
-  "image": bike.image,
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "1200"
-  }
+  "image": bike.image
 }) %>
 </script>
 <% }); %>
@@ -147,7 +139,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
       <div>
         <span class="eyebrow">Our Service</span>
-        <h2 class="font-display text-4xl font-bold mb-8 text-ink leading-tight">Why we are the #1 choice <br> in the city</h2>
+        <h2 class="font-display text-4xl font-bold mb-8 text-ink leading-tight">Why riders choose <br> Pattaya Rent a Bike</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
@@ -171,8 +163,8 @@
             <p class="text-sm text-ink/50 leading-relaxed">No hidden restrictions on how far you ride.</p>
           </div>
           <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
-            <h4 class="font-bold">1,000+ Five-Star Reviews</h4>
-            <p class="text-sm text-ink/50 leading-relaxed">Trusted by travelers from around the world since 2009.</p>
+            <h4 class="font-bold">Trusted Since 2009</h4>
+            <p class="text-sm text-ink/50 leading-relaxed">Part of Pattaya Rent a Car, with 1,200+ Google reviews from travellers around the world.</p>
           </div>
         </div>
       </div>

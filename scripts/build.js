@@ -92,7 +92,7 @@ async function build() {
     templateData: { site, fleet, faqs, reviews },
     title: "Motorbike & Scooter Rental in Pattaya",
     description:
-      "Trusted motorbike and scooter rental in Pattaya since 2009. Yamaha, Honda fleet, full insurance, friendly support. Book online or via WhatsApp.",
+      "Motorbike and scooter rental in Pattaya since 2009. Yamaha and Honda automatics, government insurance and two helmets included. Book online or via WhatsApp.",
     urlPath: "/",
     lang: "en",
     priority: "1.0",
