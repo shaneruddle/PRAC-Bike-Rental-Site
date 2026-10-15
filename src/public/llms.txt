@@ -32,5 +32,7 @@ Prices are subject to change - confirm exact price and availability at time of b
 - /monthly-rental/: monthly motorbike and scooter rental
 - /guides/nmax-vs-pcx/: Yamaha Nmax vs Honda PCX comparison
 - /guides/motorbike-insurance-in-thailand/: what motorbike insurance in Thailand covers
+- /guides/motorbike-licence-thailand/: licence, IDP and helmet rules for riding in Thailand
+- /motorbike-rental-jomtien/: scooter rental for visitors staying in Jomtien
 - /th/: Thai homepage
 - /th/bikes/ and /th/guides/: Thai-language versions

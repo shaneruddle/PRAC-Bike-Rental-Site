@@ -8,6 +8,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { site, fleet, faqs, reviews } from "../src/data/site.js";
 import { homeCopy } from "../src/data/homeCopy.js";
+import { licenceGuide, jomtienPage } from "../src/data/guides.js";
 import { bikeSlugs, bikePages, uiLabels, comparisonGuide, monthlyRentalPage, insuranceGuide } from "../src/data/bikePages.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -183,6 +184,19 @@ async function build() {
     priority: "0.6",
   });
   
+  // Article pages: licence guide + Jomtien area page (English only).
+  for (const [page, priority] of [[licenceGuide, "0.6"], [jomtienPage, "0.7"]]) {
+    await renderPage({
+      templateFile: "article.ejs",
+      templateData: { site, content: page },
+      title: page.title,
+      description: page.description,
+      urlPath: page.path,
+      lang: "en",
+      priority,
+    });
+  }
+
   // Comparison guide (English + Thai).
   const guideEnPath = `/guides/${comparisonGuide.slug}/`;
   const guideThPath = `/th/guides/${comparisonGuide.slug}/`;
