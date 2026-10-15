@@ -43,6 +43,14 @@ gtag('js', new Date());
 gtag('set', 'linker', { 'domains': ['pattayarentabike.com', 'app.pattayarentacar.com', 'www.pattayarentacar.com'] });
 gtag('config', 'G-8FHJNX2F1T');
 gtag('config', 'AW-806173499');
+// Enquiry clicks: phone, WhatsApp and email links anywhere on the page.
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]');
+  if (!a) return;
+  var h = a.getAttribute('href') || '';
+  var method = h.indexOf('tel:') === 0 ? 'phone' : h.indexOf('wa.me') !== -1 ? 'whatsapp' : h.indexOf('mailto:') === 0 ? 'email' : null;
+  if (method) gtag('event', 'contact_click', { method: method, page_path: location.pathname });
+});
 </script>
 
 <!-- Styling -->
@@ -70,6 +78,8 @@ gtag('config', 'AW-806173499');
     { "@type": "City", "name": "Pattaya City" },
     { "@type": "AdministrativeArea", "name": "Chon Buri" }
   ],
+  "geo": { "@type": "GeoCoordinates", "latitude": site.office.lat, "longitude": site.office.lng },
+  "hasMap": site.office.googleMapsUrl,
   "url": "https://" + site.domain + "/",
   "openingHours": "Mo-Su 09:00-17:00"
 }) %>
@@ -84,6 +94,8 @@ gtag('config', 'AW-806173499');
 </main>
 
 <%- include('components/footer', { site }) %>
+
+<%- include('components/mobile-cta', { site }) %>
 
 <%- include('components/date-picker-overlay') %>
 

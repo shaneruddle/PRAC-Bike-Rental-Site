@@ -14,6 +14,10 @@ export const site = {
     label: "Central Pattaya Office",
     address: "359/119 Moo 12 Nongprue, Pattaya City, Chon Buri 20150",
     hours: "9am - 5pm, 365 days a year",
+    // From the Pattaya Rent a Bike Google Business Profile (cid 5221869858550467634).
+    lat: 12.915,
+    lng: 100.867,
+    googleMapsUrl: "https://www.google.com/maps?cid=5221869858550467634",
     mapEmbed:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888!2d100.867!3d12.915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31029642648812ad%3A0x4877cef83e384c32!2sPattaya%20Rent%20a%20Bike!5e0!3m2!1sen!2sth!4v1778382551513!5m2!1sen!2sth",
   },
