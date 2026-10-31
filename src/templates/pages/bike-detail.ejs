@@ -5,32 +5,47 @@
   <span class="text-ink/60"><%= bike.name %></span>
 </div>
 
-<!-- Hero -->
-<section class="py-10 md:py-16 bg-paper">
-  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-    <div>
-      <span class="eyebrow"><%= bike.engine %> &bull; <%= bike.transmission %></span>
-      <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
-      <p class="text-ink/60 text-lg mb-6"><%= content.tagline %></p>
+<!-- Hero: photo first on mobile, then name, rates and the instant-quote card for this bike -->
+<section class="pt-3 pb-12 md:py-16 bg-paper">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+    <div class="md:order-2 md:sticky md:top-28 -mx-6 md:mx-0">
+      <div class="aspect-[16/10] md:aspect-[4/3] relative overflow-hidden md:rounded-3xl bg-white shadow-sm">
+        <img src="<%= bike.image %>" alt="<%= bike.name %>" class="w-full h-full object-cover" referrerpolicy="no-referrer" loading="eager" fetchpriority="high">
+        <span class="absolute top-4 left-6 md:left-4 bg-primary text-white text-xs font-black px-3 py-1.5 rounded-lg shadow-lg"><%= bike.engine %> &bull; <%= bike.transmission %></span>
+      </div>
+    </div>
+    <div class="md:order-1">
+      <h1 class="font-display text-3xl md:text-5xl font-bold mb-3 text-ink leading-tight"><%= content.h1 %></h1>
+      <p class="text-ink/60 md:text-lg mb-5 md:mb-6"><%= content.tagline %></p>
       <% if (bike.price) { %>
-      <div class="flex flex-wrap gap-3 mb-8">
+      <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-6">
         <% [[3, ui.rate3], [7, ui.rate7], [30, ui.rate30]].forEach(function(r) { if (!bike.price[r[0]]) return; %>
-        <div class="bg-white rounded-xl border border-black/5 px-4 py-2.5">
-          <span class="block text-[10px] font-bold uppercase tracking-widest text-ink/40"><%= r[1] %></span>
+        <div class="bg-white rounded-xl border border-black/5 px-3 py-2.5">
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-ink/40 leading-tight"><%= r[1] %></span>
           <span class="font-bold text-ink">&#3647;<%= bike.price[r[0]].toLocaleString() %></span><span class="text-ink/50 text-sm"><%= ui.perDay %></span>
         </div>
         <% }); %>
       </div>
       <% } %>
-      <div id="search-bikes">
-        <%- include('../components/date-picker', { pickerLabels: ui.picker, bikeSlug: bike.slug }) %>
+      <div id="search-bikes" class="scroll-mt-24">
+        <%- include('../components/quote-builder', { fleet: [bike], quoteCopy, pickerLabels: ui.picker, monthlyHref: '/monthly-rental/', buildId }) %>
       </div>
-    </div>
-    <div class="aspect-[4/3] relative overflow-hidden rounded-3xl bg-white">
-      <img src="<%= bike.image %>" alt="<%= bike.name %>" class="w-full h-full object-cover" referrerpolicy="no-referrer" loading="eager" fetchpriority="high">
     </div>
   </div>
 </section>
+
+<!-- Sticky mobile price bar (replaces the global Call/WhatsApp bar on bike pages) -->
+<div class="bike-bar fixed bottom-0 inset-x-0 z-40 md:hidden flex items-center gap-3 px-4 pt-3 bg-white/95 backdrop-blur-lg border-t border-black/5 shadow-[0_-8px_24px_rgba(0,0,0,0.06)]" style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
+  <img src="<%= bike.image %>" alt="" class="w-12 h-12 rounded-xl object-cover bg-paper shrink-0" referrerpolicy="no-referrer">
+  <div class="min-w-0 flex-1">
+    <p class="text-sm font-black text-ink truncate"><%= bike.name.replace(/^(Yamaha|Honda) /, "") %></p>
+    <% if (bike.price && bike.price[3]) { %><p class="text-xs font-bold text-primary">&#3647;<%= bike.price[3] %><%= ui.perDay %></p><% } %>
+  </div>
+  <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-12 h-12 shrink-0 rounded-xl bg-whatsapp text-white flex items-center justify-center shadow-lg shadow-whatsapp/20">
+    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.1 1.3 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.6-8.3z"/></svg>
+  </a>
+  <a href="#search-bikes" class="btn-primary !py-3 !px-5 !text-xs shrink-0"><%- quoteCopy.barCta %></a>
+</div>
 
 <!-- Intro / best-for / body -->
 <section class="py-16 bg-white">

@@ -108,3 +108,7 @@
   .dp-day.range-start.is-today::after,
   .dp-day.range-end.is-today::after { @apply bg-white; }
 }
+
+/* Bike pages swap the global Call/WhatsApp bar for their own price bar (bike-detail.ejs).
+   Unlayered so it beats the bar's own display utility. */
+body:has(.bike-bar) .mobile-cta { display: none; }

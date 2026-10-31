@@ -74,6 +74,7 @@ export const homeCopy = {
       step2: "2. Your dates",
       total: "Total",
       cta: "Check Availability",
+      barCta: "Get my price", // bike pages' sticky mobile bar
       js: {
         cta: "Book the {bike}",
         day: "day",
@@ -188,6 +189,7 @@ export const homeCopy = {
       step2: "2. วันที่เช่า",
       total: "รวม",
       cta: "เช็คคิวว่าง",
+      barCta: "เช็คราคา",
       js: {
         cta: "จอง {bike}",
         day: "วัน",
