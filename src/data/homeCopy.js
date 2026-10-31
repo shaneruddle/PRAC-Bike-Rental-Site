@@ -34,30 +34,38 @@ export const homeCopy = {
       heading: "What Our Clients Say",
       sub: "Join thousands of happy travelers who trust us in Pattaya.",
     },
-    why: {
-      eyebrow: "Our Service",
-      heading: "Why riders choose <br> Pattaya Rent a Bike", // (html)
-      cards: [
-        ["Open Daily", null], // null = office hours
-        ["Insurance Included", "Every bike comes with compulsory government insurance (Po Lo Bo), covering basic medical costs."],
-        ["Office Pickup", "Easy pickup and return at our Pratumnak office, between Pattaya and Jomtien."],
-        ["Best Fleet", "Modern, well-maintained bikes only. No old stock."],
-        ["Unlimited Mileage", "No hidden restrictions on how far you ride."],
-        ["Trusted Since 2009", "Part of Pattaya Rent a Car, with 1,200+ Google reviews from travellers around the world."],
-      ],
-    },
-    requirements: {
+    // Rental at a glance (components/rental-glance.ejs). Replaced the why/requirements card grids.
+    glance: {
       eyebrow: "Before You Book",
-      heading: "Rental Requirements &amp; Policy", // (html)
-      sub: "Everything you need to know before picking up your bike.",
-      cards: [
-        ["Documents Required", "Show your original passport and a valid driving licence at pickup. We don't keep your passport."],
-        ["Security Deposit", "A 1,000 THB cash deposit is required at pickup, refunded on return."],
-        ["Insurance Included", "Every bike comes with compulsory government insurance (Po Lo Bo), covering basic medical costs."],
-        ["Helmets Included", "Two helmets are provided with every rental at no extra cost."],
-        ["Pickup &amp; Return Only", "All rentals are collected and returned at our Pratumnak office &mdash; we don't offer hotel delivery."], // (html)
-        ["Well-Maintained Fleet", "Every bike is regularly serviced and checked before it goes out."],
-      ],
+      heading: "Your rental at a glance",
+      sub: "No surprises: what comes with the bike, what to bring, and how pickup works.",
+      included: {
+        title: "Included with every bike",
+        items: [
+          ["helmet", "Two helmets", "For you and a passenger, at no extra cost."],
+          ["shield", "Government insurance", "Compulsory Po Lo Bo cover for basic medical costs."],
+          ["road", "Unlimited mileage", "No limits on how far you ride."],
+          ["wrench", "Breakdown help", "Call or WhatsApp us, 9am - 5pm, 365 days a year."],
+        ],
+      },
+      bring: {
+        title: "Bring to pickup",
+        items: [
+          ["Your original passport", "We look at it. We don't keep it."],
+          ["A valid driving licence", "Shown at pickup."],
+          ["1,000 THB cash deposit", "Refunded when you return the bike."],
+        ],
+      },
+      steps: {
+        title: "How it works",
+        items: [
+          ["Get your price", "Choose a bike and dates above, then book online."],
+          ["Pick up in Pratumnak", "Collect your bike at our Pratumnak Office, between Pattaya and Jomtien. We don't deliver to hotels."],
+          ["Ride, then return", "Bring it back to the same office at the end of your rental."],
+        ],
+      },
+      cta: "Get my price",
+      directions: "Get directions &rarr;", // (html)
     },
     faq: {
       eyebrow: "Information",
@@ -134,30 +142,37 @@ export const homeCopy = {
       heading: "รีวิวจากลูกค้า",
       sub: "นักท่องเที่ยวหลายพันคนไว้วางใจเราในพัทยา (รีวิวต้นฉบับภาษาอังกฤษ)",
     },
-    why: {
-      eyebrow: "บริการของเรา",
-      heading: "ทำไมต้องเช่ากับ <br> Pattaya Rent a Bike", // (html)
-      cards: [
-        ["เปิดทุกวัน", "9:00 - 17:00 น. ตลอด 365 วัน"],
-        ["รวมประกันภัย", "รถทุกคันมีประกันภัยภาคบังคับ (พ.ร.บ.) คุ้มครองค่ารักษาพยาบาลเบื้องต้น"],
-        ["รับรถที่สำนักงาน", "รับและคืนรถได้สะดวกที่สำนักงานพระตำหนัก ระหว่างพัทยากับจอมเทียน"],
-        ["รถคุณภาพ", "รถรุ่นใหม่ ดูแลอย่างดีเท่านั้น ไม่มีรถเก่า"],
-        ["ไม่จำกัดระยะทาง", "ขับได้ไกลเท่าที่ต้องการ ไม่มีข้อจำกัดแอบแฝง"],
-        ["ไว้วางใจได้ตั้งแต่ปี 2009", "ในเครือ Pattaya Rent a Car มีรีวิว Google กว่า 1,200 รีวิวจากนักท่องเที่ยวทั่วโลก"],
-      ],
-    },
-    requirements: {
+    glance: {
       eyebrow: "ก่อนจอง",
-      heading: "เงื่อนไขและเอกสารการเช่า", // (html)
-      sub: "ทุกอย่างที่ควรรู้ก่อนมารับรถ",
-      cards: [
-        ["เอกสารที่ต้องใช้", "แสดงพาสปอร์ตตัวจริงและใบขับขี่ที่ยังไม่หมดอายุตอนรับรถ เราไม่ยึดพาสปอร์ตของคุณ"],
-        ["เงินมัดจำ", "มัดจำเงินสด 1,000 บาทตอนรับรถ คืนให้เมื่อคืนรถ"],
-        ["รวมประกันภัย", "รถทุกคันมีประกันภัยภาคบังคับ (พ.ร.บ.) คุ้มครองค่ารักษาพยาบาลเบื้องต้น"],
-        ["มีหมวกกันน็อคให้", "หมวกกันน็อค 2 ใบกับทุกการเช่า ไม่มีค่าใช้จ่ายเพิ่ม"],
-        ["รับและคืนที่สำนักงานเท่านั้น", "รับและคืนรถที่สำนักงานพระตำหนักเท่านั้น ไม่มีบริการส่งรถถึงโรงแรม"],
-        ["รถได้รับการดูแล", "รถทุกคันเข้ารับบริการตามรอบและตรวจเช็คก่อนส่งมอบ"],
-      ],
+      heading: "สรุปการเช่าในหน้าเดียว",
+      sub: "ไม่มีเซอร์ไพรส์ สิ่งที่ได้พร้อมรถ เอกสารที่ต้องนำมา และขั้นตอนการรับรถ",
+      included: {
+        title: "ได้พร้อมรถทุกคัน",
+        items: [
+          ["helmet", "หมวกกันน็อค 2 ใบ", "สำหรับคนขับและคนซ้อน ไม่มีค่าใช้จ่ายเพิ่ม"],
+          ["shield", "ประกันภัยภาคบังคับ", "พ.ร.บ. คุ้มครองค่ารักษาพยาบาลเบื้องต้น"],
+          ["road", "ไม่จำกัดระยะทาง", "ขับได้ไกลเท่าที่ต้องการ"],
+          ["wrench", "ช่วยเหลือเมื่อรถเสีย", "โทรหรือ WhatsApp 9:00 - 17:00 น. ทุกวัน"],
+        ],
+      },
+      bring: {
+        title: "สิ่งที่ต้องนำมาตอนรับรถ",
+        items: [
+          ["พาสปอร์ตตัวจริง", "แสดงให้ดูเท่านั้น เราไม่ยึดพาสปอร์ต"],
+          ["ใบขับขี่ที่ยังไม่หมดอายุ", "แสดงตอนรับรถ"],
+          ["เงินมัดจำสด 1,000 บาท", "คืนให้เมื่อคืนรถ"],
+        ],
+      },
+      steps: {
+        title: "ขั้นตอนการเช่า",
+        items: [
+          ["เช็คราคา", "เลือกรถและวันที่ด้านบน แล้วจองออนไลน์"],
+          ["รับรถที่พระตำหนัก", "รับรถที่สำนักงานพระตำหนัก ระหว่างพัทยากับจอมเทียน ไม่มีบริการส่งรถถึงโรงแรม"],
+          ["ขับเที่ยว แล้วคืนรถ", "นำรถมาคืนที่สำนักงานเดิมเมื่อครบกำหนด"],
+        ],
+      },
+      cta: "เช็คราคา",
+      directions: "ดูเส้นทาง &rarr;", // (html)
     },
     faq: {
       eyebrow: "ข้อมูล",

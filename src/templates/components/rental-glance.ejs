@@ -1,0 +1,91 @@
+<%#
+  Homepage "rental at a glance": what's included, what to bring, how pickup works,
+  and the office map, in one scannable section. Copy: homeCopy.<lang>.glance.
+  Facts must match site.js FAQs (helmets, Po Lo Bo, deposit, passport not kept, no delivery).
+%>
+<%
+  const g = t.glance;
+  const ICONS = {
+    helmet: '<path d="M4 15a8 8 0 0116 0v2H4v-2z"/><path d="M12 7v4m-6 4h12"/>',
+    shield: '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/>',
+    road: '<path d="M8 3L5 21M16 3l3 18M12 4v3m0 4v3m0 4v2"/>',
+    wrench: '<path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.4-.6-.6-2.4 2.5-2.5z"/>',
+  };
+%>
+<section id="rental-glance" class="py-16 md:py-24 bg-white">
+  <div class="container mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <span class="eyebrow mx-auto"><%- g.eyebrow %></span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%- g.heading %></h2>
+      <p class="text-ink/50 max-w-2xl mx-auto"><%- g.sub %></p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+      <!-- Included -->
+      <div class="lg:col-span-3 rounded-[28px] bg-primary text-white p-6 sm:p-8 relative overflow-hidden">
+        <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-white/10 pointer-events-none" aria-hidden="true"></div>
+        <h3 class="font-display text-xl font-bold mb-6 relative"><%- g.included.title %></h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 relative">
+          <% g.included.items.forEach(function(it) { %>
+          <div class="flex gap-4">
+            <span class="w-12 h-12 shrink-0 rounded-2xl bg-white/15 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><%- ICONS[it[0]] %></svg>
+            </span>
+            <div>
+              <p class="font-bold"><%- it[1] %></p>
+              <p class="text-sm text-white/70 leading-relaxed"><%- it[2] %></p>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- Bring -->
+      <div class="lg:col-span-2 rounded-[28px] bg-paper border border-black/5 p-6 sm:p-8">
+        <h3 class="font-display text-xl font-bold mb-6 text-ink"><%- g.bring.title %></h3>
+        <ul class="space-y-4">
+          <% g.bring.items.forEach(function(it) { %>
+          <li class="flex gap-3 items-start">
+            <span class="w-7 h-7 shrink-0 rounded-full bg-ink text-white text-xs font-black flex items-center justify-center mt-0.5" aria-hidden="true">&#10003;</span>
+            <div>
+              <p class="font-bold text-ink"><%- it[0] %></p>
+              <p class="text-sm text-ink/50"><%- it[1] %></p>
+            </div>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <!-- How it works -->
+      <div class="lg:col-span-3 rounded-[28px] border border-black/5 p-6 sm:p-8">
+        <h3 class="font-display text-xl font-bold mb-6 text-ink"><%- g.steps.title %></h3>
+        <ol class="relative space-y-6 before:absolute before:left-5 before:top-5 before:bottom-5 before:w-0.5 before:bg-primary/20">
+          <% g.steps.items.forEach(function(it, i) { %>
+          <li class="relative flex gap-4">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-primary text-white font-black flex items-center justify-center shadow-lg shadow-primary/30"><%= i + 1 %></span>
+            <div class="pt-1.5">
+              <p class="font-bold text-ink"><%- it[0] %></p>
+              <p class="text-sm text-ink/50 leading-relaxed"><%- it[1] %></p>
+            </div>
+          </li>
+          <% }); %>
+        </ol>
+        <a href="#search-bikes" class="btn-primary mt-8 sm:w-max"><%- g.cta %> &rarr;</a>
+      </div>
+
+      <!-- Office -->
+      <div class="lg:col-span-2 rounded-[28px] border border-black/5 overflow-hidden flex flex-col">
+        <div class="h-56 lg:flex-1 bg-paper">
+          <iframe src="<%= site.office.mapEmbed %>" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="<%= site.name %> Location"></iframe>
+        </div>
+        <div class="p-6">
+          <p class="font-bold text-ink"><%= site.office.label %></p>
+          <p class="text-sm text-ink/50 leading-relaxed mb-3"><%= site.office.address %></p>
+          <a href="<%= site.office.googleMapsUrl %>" target="_blank" rel="noopener noreferrer" class="text-primary font-bold text-sm hover:underline"><%- g.directions %></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
