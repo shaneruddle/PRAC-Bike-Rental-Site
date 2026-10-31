@@ -1,37 +1,40 @@
 <%# Copy comes from src/data/homeCopy.js (t = homeCopy.en or .th). %>
-<!-- Hero -->
-<section class="relative pt-16 pb-24 overflow-hidden bg-white">
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <div class="flex flex-wrap items-center gap-3 mb-6">
+<!-- Hero: headline, then the instant-quote card (right column on desktop, straight after the headline on mobile) -->
+<section class="relative pt-8 pb-16 md:pt-16 md:pb-24 overflow-hidden bg-white">
+  <div class="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" aria-hidden="true"></div>
+  <div class="container mx-auto px-4 sm:px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,560px)] gap-x-12 gap-y-6 lg:items-center">
+      <div class="lg:col-start-1 lg:row-start-1 lg:self-end">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
           <div class="flex items-center gap-2 bg-paper px-3 py-1 rounded-full border border-black/5">
             <span class="text-[10px] font-bold text-ink/50 tracking-tight"><%- t.badgeGroup %></span>
           </div>
-          <div class="flex items-center gap-1.5 bg-primary/10 px-3 py-1 rounded-full">
+          <div class="hidden sm:flex items-center gap-1.5 bg-primary/10 px-3 py-1 rounded-full">
             <span class="text-[10px] font-bold text-primary tracking-tight"><%- t.badgeReply %></span>
           </div>
         </div>
 
-        <h1 class="font-display text-4xl md:text-6xl font-bold leading-[1.1] mb-6 text-ink">
+        <h1 class="font-display text-[2rem] md:text-6xl font-bold leading-[1.1] text-ink">
           <%- t.h1 %>
         </h1>
+      </div>
 
-        <p class="text-lg md:text-xl text-ink/60 leading-relaxed mb-10 max-w-xl">
+      <div class="relative lg:col-start-2 lg:row-start-1 lg:row-span-2" id="search-bikes">
+        <%- include('../components/quote-builder', { fleet, quoteCopy: t.quote, pickerLabels: t.picker, monthlyHref: t.links.monthly || '/monthly-rental/', buildId }) %>
+      </div>
+
+      <div class="lg:col-start-1 lg:row-start-2 lg:self-start">
+        <p class="text-lg md:text-xl text-ink/60 leading-relaxed mb-8 max-w-xl">
           <%- t.intro %>
         </p>
 
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-3 sm:gap-4">
           <% t.chips.forEach(function(chip) { %>
           <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
             <span class="font-bold text-sm"><%- chip %></span>
           </div>
           <% }); %>
         </div>
-      </div>
-
-      <div class="relative" id="search-bikes">
-        <%- include('../components/date-picker', { pickerLabels: t.picker }) %>
       </div>
     </div>
   </div>

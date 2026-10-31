@@ -67,6 +67,26 @@ export const homeCopy = {
     },
     links: { compare: "/guides/nmax-vs-pcx/", monthly: "/monthly-rental/", bikePrefix: "/bikes/", search: "/#search-bikes" },
     picker: null,
+    // Instant-quote card (components/quote-builder.ejs). js strings are used by assets/js/quote.js.
+    quote: {
+      heading: "Instant Price",
+      step1: "1. Choose your bike",
+      step2: "2. Your dates",
+      total: "Total",
+      cta: "Check Availability",
+      js: {
+        cta: "Book the {bike}",
+        day: "day",
+        days: "days",
+        perDay: "/day",
+        loading: "Getting live price...",
+        approx: "About",
+        confirmNext: "Price confirmed on the next step",
+        monthly: "30+ days? See our monthly rates",
+        nudge: "Ride <b>{days} days</b> for <b>{rate}/day</b>: only <b>{extra}</b> more for {more} extra days.",
+        nudgeCta: "Make it {days} days",
+      },
+    },
   },
 
   th: {
@@ -146,6 +166,25 @@ export const homeCopy = {
       select: "เลือกวันที่",
       search: "ค้นหารถว่าง",
       note: "จองก่อน ชำระทีหลัง",
+    },
+    quote: {
+      heading: "เช็คราคาทันที",
+      step1: "1. เลือกรถ",
+      step2: "2. วันที่เช่า",
+      total: "รวม",
+      cta: "เช็คคิวว่าง",
+      js: {
+        cta: "จอง {bike}",
+        day: "วัน",
+        days: "วัน",
+        perDay: "/วัน",
+        loading: "กำลังเช็คราคา...",
+        approx: "ประมาณ",
+        confirmNext: "ยืนยันราคาในขั้นตอนถัดไป",
+        monthly: "เช่า 30 วันขึ้นไป? ดูราคารายเดือน",
+        nudge: "เช่า <b>{days} วัน</b> เหลือ <b>{rate}/วัน</b> จ่ายเพิ่มเพียง <b>{extra}</b> ได้อีก {more} วัน",
+        nudgeCta: "เปลี่ยนเป็น {days} วัน",
+      },
     },
   },
 };

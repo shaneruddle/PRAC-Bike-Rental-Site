@@ -52,7 +52,7 @@ async function renderPage({
 }) {
   const pageBody = await ejs.renderFile(
     path.join(templatesDir, "pages", templateFile),
-    { prices, ...templateData },
+    { prices, buildId, ...templateData },
     { root: templatesDir }
   );
 

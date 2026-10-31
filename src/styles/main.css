@@ -53,6 +53,16 @@
     @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-sm rounded-[32px] p-8;
   }
 
+  /* --- Homepage quote card: bike tiles (components/quote-builder.ejs) --- */
+  .qb-bike {
+    @apply relative text-left p-1.5 sm:p-2 rounded-xl border-2 border-black/5 bg-white cursor-pointer transition-all hover:border-primary/40;
+  }
+  .qb-bike.is-selected { @apply border-primary bg-primary/5 shadow-md shadow-primary/10; }
+  .qb-check {
+    @apply absolute top-2.5 right-2.5 z-10 w-5 h-5 rounded-full bg-primary text-white text-[11px] font-black items-center justify-center hidden;
+  }
+  .qb-bike.is-selected .qb-check { @apply flex; }
+
   /* --- Date range picker (mirrors pattayarentacar.com) --- */
   .dp-field {
     @apply w-full p-4 bg-paper rounded-xl border border-gray-100 text-sm font-black text-ink outline-none flex items-center gap-2 cursor-pointer text-left transition-all hover:border-gray-300;

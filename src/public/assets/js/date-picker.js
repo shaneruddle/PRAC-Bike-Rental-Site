@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const elTriggerPickup = document.getElementById('dp-trigger-pickup');
         const elTriggerReturn = document.getElementById('dp-trigger-return');
         const overlay = document.getElementById('dp-overlay');
+        // Homepage quote card (data-quote="1"): Apply updates the price instead of redirecting;
+        // its own button submits the form. See quote.js.
+        const quoteMode = bookingForm.dataset.quote === '1';
 
         let viewMonth = today.getMonth(), viewYear = today.getFullYear();
         let startDate = null, endDate = null;
@@ -121,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             elReturnVal.textContent = fmt(committed.end) + ' · ' + committed.dropoffTime;
             elTriggerPickup.classList.remove('is-placeholder');
             elTriggerReturn.classList.remove('is-placeholder');
+            bookingForm.dispatchEvent(new Event('dp:change'));
         }
 
         function goToResults() {
@@ -131,13 +135,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // GA4: count the handoff to the booking engine as the site's primary lead event
             // data-bike is set on bike-model pages, so we can see which page the search came from.
             const bike = bookingForm.dataset.bike || '';
+            // On the homepage quote card the bike is the visitor's pick, so tag it with the source.
+            const source = bookingForm.dataset.source || '';
+            const content = source ? `${source}-${bike}` : bike;
             if (typeof gtag === 'function') {
-                gtag('event', 'search_bikes', { from: from, to: to, bike_page: bike || 'home' });
+                gtag('event', 'search_bikes', source
+                    ? { from: from, to: to, bike_page: source, bike: bike }
+                    : { from: from, to: to, bike_page: bike || 'home' });
             }
             // Redirect to the booking engine in bike mode: from/to dates + times (no location at
             // this stage). UTM-tagged so enquiries/bookings are attributed to the bike site in the
             // CRM (the engine stores utm_source on every enquiry) and in GA4.
-            window.location.href = `https://app.pattayarentacar.com/rent-a-bike?from=${from}&to=${to}&pickupTime=${pickupTime}&dropoffTime=${dropoffTime}&utm_source=pattayarentabike&utm_medium=site_handoff${bike ? `&utm_content=${encodeURIComponent(bike)}` : ''}`;
+            window.location.href = `https://app.pattayarentacar.com/rent-a-bike?from=${from}&to=${to}&pickupTime=${pickupTime}&dropoffTime=${dropoffTime}&utm_source=pattayarentabike&utm_medium=site_handoff${content ? `&utm_content=${encodeURIComponent(content)}` : ''}`;
         }
 
         document.getElementById('dp-apply').addEventListener('click', () => {
@@ -146,7 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
             committed.dropoffTime = elTimeReturn ? elTimeReturn.value : committed.dropoffTime;
             commitSelection();
             closeCal();
-            goToResults();
+            if (!quoteMode) goToResults();
+        });
+
+        // Quote card's "make it N days" nudge: keep the pickup, move the return date.
+        bookingForm.addEventListener('dp:set-length', (e) => {
+            committed.end = new Date(committed.start);
+            committed.end.setDate(committed.end.getDate() + e.detail.days);
+            commitSelection();
         });
 
         document.getElementById('dp-reset')?.addEventListener('click', () => {
