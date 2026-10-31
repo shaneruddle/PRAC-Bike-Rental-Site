@@ -1,0 +1,66 @@
+<%#
+  Homepage bike finder: three tap questions, the matching bike updates instantly.
+  "Get my price" selects that bike in the quote card (quote-builder.ejs) and scrolls to it.
+  SCORES: points each answer gives each bike; highest total wins, ties go to TIEBREAK order.
+  Based on the bike pages' "Best for" copy (bikePages.js).
+%>
+<%
+  const f = t.finder;
+  const SCORES = {
+    "yamaha-gt-125": { solo: 2, town: 2, easy: 3, two: -3, trips: -2 },
+    "yamaha-nmax": { two: 2, trips: 2, comfort: 1, sporty: 1 },
+    "honda-pcx": { comfort: 4, two: 1, trips: 1, town: 1 },
+    "yamaha-aerox": { sporty: 4, trips: 1, solo: 1 },
+  };
+  const TIEBREAK = ["yamaha-nmax", "honda-pcx", "yamaha-gt-125", "yamaha-aerox"];
+  const defaults = { who: "solo", where: "town", want: "easy" };
+%>
+<section id="bike-finder" class="py-16 md:py-24 bg-ink text-white overflow-hidden">
+  <div class="container mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div>
+        <span class="eyebrow"><%- f.eyebrow %></span>
+        <h2 class="font-display text-3xl md:text-5xl font-bold mb-3 leading-tight"><%- f.heading %></h2>
+        <p class="text-white/50 mb-8"><%- f.sub %></p>
+
+        <div id="bf-form" class="space-y-6" data-scores="<%= JSON.stringify(SCORES) %>" data-tiebreak="<%= JSON.stringify(TIEBREAK) %>">
+          <% f.questions.forEach(function(q, qi) { %>
+          <fieldset>
+            <legend class="text-xs font-black uppercase tracking-widest text-white/40 mb-3"><span class="text-primary"><%= qi + 1 %>.</span> <%- q.label %></legend>
+            <div class="flex flex-wrap gap-2">
+              <% q.options.forEach(function(o) { %>
+              <button type="button" class="bf-opt<%= defaults[q.key] === o[0] ? ' is-on' : '' %>" data-q="<%= q.key %>" data-a="<%= o[0] %>" aria-pressed="<%= defaults[q.key] === o[0] %>"><%- o[1] %></button>
+              <% }); %>
+            </div>
+          </fieldset>
+          <% }); %>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-10 bg-primary/30 blur-3xl rounded-full pointer-events-none" aria-hidden="true"></div>
+        <% fleet.forEach(function(bike, i) { const page = bikePages[bike.slug][bikeLang]; %>
+        <div class="bf-result relative bg-white text-ink rounded-[32px] p-5 sm:p-8 shadow-2xl<%= i === 0 ? '' : ' hidden' %>" data-slug="<%= bike.slug %>" aria-live="polite">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-black uppercase tracking-widest text-primary"><%- f.match %></span>
+            <span class="bg-primary text-white text-[10px] font-black px-2.5 py-1 rounded-lg"><%= bike.engine %></span>
+          </div>
+          <img src="<%= bike.image %>" alt="<%= bike.name %>" class="w-full aspect-[16/10] object-cover rounded-2xl bg-paper mb-5" referrerpolicy="no-referrer" loading="lazy">
+          <div class="flex items-end justify-between gap-4 mb-2">
+            <h3 class="font-display text-2xl sm:text-3xl font-bold"><%= bike.name %></h3>
+            <% if (bike.price && bike.price[3]) { %>
+            <p class="text-primary font-black text-lg whitespace-nowrap">&#3647;<%= bike.price[3] %><span class="text-sm text-ink/40"><%- f.perDay %></span></p>
+            <% } %>
+          </div>
+          <p class="text-sm text-ink/60 leading-relaxed mb-6"><%= page.bestFor %></p>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+            <a href="#search-bikes" class="btn-primary !py-3.5" data-pick="<%= bike.slug %>"><%- f.cta %> &rarr;</a>
+            <a href="<%= t.links.bikePrefix + bike.slug + '/' %>" class="text-sm font-bold text-ink/50 hover:text-primary text-center"><%- f.more %></a>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="/assets/js/bike-finder.js?v=<%= buildId %>" defer></script>

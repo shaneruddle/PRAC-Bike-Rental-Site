@@ -116,7 +116,7 @@ async function build() {
   // Homepage (English + Thai).
   await renderPage({
     templateFile: "home.ejs",
-    templateData: { site, fleet, faqs, reviews, t: homeCopy.en },
+    templateData: { site, fleet, faqs, reviews, t: homeCopy.en, bikePages, bikeLang: "en" },
     title: homeCopy.en.meta.title,
     description: lowest ? homeCopy.en.meta.description.replace("Book online", `From \u0E3F${lowest}/day. Book online`) : homeCopy.en.meta.description,
     urlPath: "/",
@@ -128,7 +128,7 @@ async function build() {
 
   await renderPage({
     templateFile: "home.ejs",
-    templateData: { site, fleet, faqs: homeCopy.th.faqs, reviews, t: homeCopy.th },
+    templateData: { site, fleet, faqs: homeCopy.th.faqs, reviews, t: homeCopy.th, bikePages, bikeLang: "th" },
     title: homeCopy.th.meta.title,
     description: homeCopy.th.meta.description,
     urlPath: "/th/",

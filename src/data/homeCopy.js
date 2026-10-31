@@ -87,6 +87,21 @@ export const homeCopy = {
         nudgeCta: "Make it {days} days",
       },
     },
+    // Bike finder (components/bike-finder.ejs): each answer adds points to bikes (see SCORES there).
+    finder: {
+      eyebrow: "Bike Finder",
+      heading: "Which bike is right for you?",
+      sub: "Three taps. We'll match you with the right bike from our fleet.",
+      questions: [
+        { key: "who", label: "Who's riding?", options: [["solo", "Just me"], ["two", "Two of us"]] },
+        { key: "where", label: "Where are you going?", options: [["town", "Around town &amp; beaches"], ["trips", "Day trips further out"]] },
+        { key: "want", label: "What matters most?", options: [["easy", "Easy &amp; affordable"], ["comfort", "Comfort &amp; legroom"], ["sporty", "Sporty look"]] },
+      ],
+      match: "Your match",
+      perDay: "/day",
+      cta: "Get my price",
+      more: "More about this bike &rarr;", // (html)
+    },
   },
 
   th: {
@@ -185,6 +200,20 @@ export const homeCopy = {
         nudge: "เช่า <b>{days} วัน</b> เหลือ <b>{rate}/วัน</b> จ่ายเพิ่มเพียง <b>{extra}</b> ได้อีก {more} วัน",
         nudgeCta: "เปลี่ยนเป็น {days} วัน",
       },
+    },
+    finder: {
+      eyebrow: "ตัวช่วยเลือกรถ",
+      heading: "รถคันไหนเหมาะกับคุณ?",
+      sub: "แตะแค่ 3 ครั้ง เราจะแนะนำรถที่เหมาะกับคุณที่สุด",
+      questions: [
+        { key: "who", label: "ใครขับบ้าง?", options: [["solo", "ขับคนเดียว"], ["two", "ซ้อนสอง"]] },
+        { key: "where", label: "จะไปที่ไหน?", options: [["town", "ในเมืองและชายหาด"], ["trips", "เที่ยวไกลนอกเมือง"]] },
+        { key: "want", label: "อะไรสำคัญที่สุด?", options: [["easy", "ขับง่าย ราคาประหยัด"], ["comfort", "นั่งสบาย ที่วางขากว้าง"], ["sporty", "ดีไซน์สปอร์ต"]] },
+      ],
+      match: "รถที่เหมาะกับคุณ",
+      perDay: "/วัน",
+      cta: "เช็คราคา",
+      more: "ดูรายละเอียดรถรุ่นนี้ &rarr;", // (html)
     },
   },
 };

@@ -63,6 +63,12 @@
   }
   .qb-bike.is-selected .qb-check { @apply flex; }
 
+  /* --- Homepage bike finder answers (components/bike-finder.ejs) --- */
+  .bf-opt {
+    @apply px-4 sm:px-5 py-3 rounded-full border-2 border-white/15 text-sm font-bold text-white/70 cursor-pointer transition-all hover:border-white/40 active:scale-95;
+  }
+  .bf-opt.is-on { @apply bg-primary border-primary text-white shadow-lg shadow-primary/30; }
+
   /* --- Date range picker (mirrors pattayarentacar.com) --- */
   .dp-field {
     @apply w-full p-4 bg-paper rounded-xl border border-gray-100 text-sm font-black text-ink outline-none flex items-center gap-2 cursor-pointer text-left transition-all hover:border-gray-300;
