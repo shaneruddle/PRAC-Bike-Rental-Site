@@ -1,4 +1,4 @@
-<!-- Generic article page (licence guide, area pages). Content: src/data/guides.js -->
+<!-- Generic article page (licence guide, area pages). Content: src/data/guides.js, src/data/areas.js -->
 <!-- Breadcrumb -->
 <div class="container mx-auto px-6 pt-8 text-xs text-ink/40">
   <a href="/" class="hover:text-primary transition-colors">Home</a>
@@ -8,14 +8,18 @@
 
 <!-- Hero -->
 <section class="py-10 md:py-16 bg-paper">
-  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center lg:items-start">
     <div>
       <% if (content.eyebrow) { %><span class="eyebrow"><%= content.eyebrow %></span><% } %>
       <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
       <p class="text-ink/60 text-lg"><%= content.intro %></p>
     </div>
-    <div id="search-bikes">
+    <div id="search-bikes" class="scroll-mt-24">
+      <% if (area) { %>
+      <%- include('../components/quote-builder', { fleet, quoteCopy, monthlyHref: '/monthly-rental/', source: 'area-' + content.slug, buildId }) %>
+      <% } else { %>
       <%- include('../components/date-picker', { bikeSlug: content.slug }) %>
+      <% } %>
     </div>
   </div>
 </section>
@@ -73,6 +77,20 @@
     <% }); %>
   </div>
 </section>
+
+<% if (nearby.length) { %>
+<!-- Nearby areas -->
+<section class="py-12 bg-ink text-white">
+  <div class="container mx-auto px-6 max-w-3xl text-center">
+    <p class="text-xs font-black uppercase tracking-widest text-white/40 mb-5">Staying nearby?</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <% nearby.forEach(function(a) { %>
+      <a href="<%= a.path %>" class="px-5 py-3 rounded-full border-2 border-white/15 text-sm font-bold text-white/80 hover:border-primary hover:text-white transition-colors">Scooter rental <%= a.label %> &rarr;</a>
+      <% }); %>
+    </div>
+  </div>
+</section>
+<% } %>
 
 <!-- Cross-links -->
 <section class="py-10 text-center bg-paper border-t border-black/5">

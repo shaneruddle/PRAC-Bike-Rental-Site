@@ -67,6 +67,10 @@ export const homeCopy = {
       cta: "Get my price",
       directions: "Get directions &rarr;", // (html)
     },
+    areas: {
+      heading: "Where are you staying?",
+      sub: "Every rental starts at our Pratumnak office. See how it works from your part of Pattaya.",
+    },
     faq: {
       eyebrow: "Information",
       heading: "Common Questions",
@@ -173,6 +177,10 @@ export const homeCopy = {
       },
       cta: "เช็คราคา",
       directions: "ดูเส้นทาง &rarr;", // (html)
+    },
+    areas: {
+      heading: "คุณพักอยู่ย่านไหน?",
+      sub: "รับรถที่สำนักงานพระตำหนักทุกการเช่า ดูข้อมูลการเดินทางจากย่านที่คุณพัก (ภาษาอังกฤษ)",
     },
     faq: {
       eyebrow: "ข้อมูล",

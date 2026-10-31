@@ -138,6 +138,7 @@ export const jomtienPage = {
       ],
     },
   ],
+  nearby: ["pratumnak", "na-jomtien", "bang-saray"],
   ctaHeading: "Staying in Jomtien?",
   ctaText: "Message us with your dates and we'll confirm which bikes are available before you head over.",
   faqs: [

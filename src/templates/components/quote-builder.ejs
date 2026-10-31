@@ -15,7 +15,7 @@
 %>
 <div class="card-compact !bg-white !p-4 sm:!p-8 shadow-xl shadow-black/5 relative z-20">
   <h2 class="text-xl sm:text-2xl font-black mb-4 sm:mb-5 italic text-ink tracking-tight uppercase"><%- q.heading %></h2>
-  <form id="booking-form" data-quote="1" data-source="<%= single ? '' : 'home' %>" data-bike="<%= fleet[0].slug %>"
+  <form id="booking-form" data-quote="1" data-source="<%= (typeof source !== 'undefined' && source) || (single ? '' : 'home') %>" data-bike="<%= fleet[0].slug %>"
         data-copy="<%= JSON.stringify(q.js) %>" data-monthly-href="<%= monthlyHref %>">
 
     <p class="text-[10px] font-black uppercase text-gray-400 mb-2 tracking-widest<%= single ? ' hidden' : '' %>"><%- q.step1 %></p>

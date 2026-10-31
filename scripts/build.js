@@ -10,6 +10,7 @@ import { site, fleet as baseFleet, faqs, reviews } from "../src/data/site.js";
 import { fetchPrices } from "./prices.js";
 import { homeCopy } from "../src/data/homeCopy.js";
 import { licenceGuide, jomtienPage } from "../src/data/guides.js";
+import { areaPages } from "../src/data/areas.js";
 import { bikeSlugs, bikePages, uiLabels, comparisonGuide, monthlyRentalPage, insuranceGuide } from "../src/data/bikePages.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -100,6 +101,11 @@ async function loadPrices() {
 let prices = null;
 let fleet = baseFleet;
 
+// Area landing pages, Jomtien first (it predates the rest). Used for the pages
+// themselves, the "nearby areas" links and the homepage area strip.
+const allAreas = [jomtienPage, ...areaPages];
+const areaIndex = allAreas.map((p) => ({ slug: p.slug, label: p.eyebrow, path: p.path }));
+
 async function build() {
   await fs.emptyDir(distDir);
 
@@ -116,7 +122,7 @@ async function build() {
   // Homepage (English + Thai).
   await renderPage({
     templateFile: "home.ejs",
-    templateData: { site, fleet, faqs, reviews, t: homeCopy.en, bikePages, bikeLang: "en" },
+    templateData: { site, fleet, faqs, reviews, t: homeCopy.en, bikePages, bikeLang: "en", areaIndex },
     title: homeCopy.en.meta.title,
     description: lowest ? homeCopy.en.meta.description.replace("Book online", `From \u0E3F${lowest}/day. Book online`) : homeCopy.en.meta.description,
     urlPath: "/",
@@ -128,7 +134,7 @@ async function build() {
 
   await renderPage({
     templateFile: "home.ejs",
-    templateData: { site, fleet, faqs: homeCopy.th.faqs, reviews, t: homeCopy.th, bikePages, bikeLang: "th" },
+    templateData: { site, fleet, faqs: homeCopy.th.faqs, reviews, t: homeCopy.th, bikePages, bikeLang: "th", areaIndex },
     title: homeCopy.th.meta.title,
     description: homeCopy.th.meta.description,
     urlPath: "/th/",
@@ -211,11 +217,20 @@ async function build() {
     priority: "0.6",
   });
   
-  // Article pages: licence guide + Jomtien area page (English only).
-  for (const [page, priority] of [[licenceGuide, "0.6"], [jomtienPage, "0.7"]]) {
+  // Article pages: licence guide + area pages (English only). Area pages get the
+  // instant-price card and links to nearby areas.
+  for (const [page, priority] of [[licenceGuide, "0.6"], ...allAreas.map((p) => [p, "0.7"])]) {
+    const isArea = allAreas.includes(page);
     await renderPage({
       templateFile: "article.ejs",
-      templateData: { site, content: page },
+      templateData: {
+        site,
+        content: page,
+        area: isArea,
+        fleet,
+        quoteCopy: homeCopy.en.quote,
+        nearby: isArea ? areaIndex.filter((a) => a.slug !== page.slug && (page.nearby || areaIndex.map((x) => x.slug)).includes(a.slug)) : [],
+      },
       title: page.title,
       description: page.description,
       urlPath: page.path,

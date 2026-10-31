@@ -34,5 +34,6 @@ Prices are subject to change - confirm exact price and availability at time of b
 - /guides/motorbike-insurance-in-thailand/: what motorbike insurance in Thailand covers
 - /guides/motorbike-licence-thailand/: licence, IDP and helmet rules for riding in Thailand
 - /motorbike-rental-jomtien/: scooter rental for visitors staying in Jomtien
+- /motorbike-rental-pratumnak/, /motorbike-rental-central-pattaya/, /motorbike-rental-south-pattaya/, /motorbike-rental-north-pattaya/, /motorbike-rental-naklua-wongamat/, /motorbike-rental-na-jomtien/, /motorbike-rental-bang-saray/: scooter rental by area (pickup at the Pratumnak office, no delivery)
 - /th/: Thai homepage
 - /th/bikes/ and /th/guides/: Thai-language versions
