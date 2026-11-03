@@ -1,50 +1,78 @@
-<!-- Breadcrumb -->
-<div class="container mx-auto px-6 pt-8 text-xs text-ink/40">
-  <a href="/" class="hover:text-primary transition-colors">Home</a>
-  <span class="mx-2">/</span>
-  <span class="text-ink/60"><%= content.h1 %></span>
-</div>
+<%# Winter monthly deal. Copy: monthlyRentalPage in src/data/bikePages.js ({from} filled in build.js).
+    The instant-price card opens on a 30-day rental (data-default-days on the wrapper, read by date-picker.js). %>
+<!-- Hero: deal headline + instant-price card set to 30 days -->
+<section class="relative pt-6 pb-14 md:pt-12 md:pb-20 overflow-hidden bg-white">
+  <div class="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" aria-hidden="true"></div>
+  <div class="container mx-auto px-4 sm:px-6 relative z-10">
+    <div class="text-xs text-ink/40 mb-6">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-ink/60">Monthly rental</span>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,560px)] gap-x-12 gap-y-6 lg:items-center">
+      <div class="lg:col-start-1 lg:row-start-1 lg:self-end">
+        <span class="inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 sm:mb-6">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <%= content.eyebrow %>
+        </span>
+        <h1 class="font-display text-[2rem] md:text-5xl font-bold leading-[1.1] text-ink"><%= content.h1 %></h1>
+      </div>
 
-<!-- Hero -->
-<section class="py-10 md:py-16 bg-paper">
-  <div class="container mx-auto px-6 max-w-3xl text-center">
-    <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
-    <p class="text-ink/60 text-lg"><%= content.intro %></p>
+      <div class="relative scroll-mt-24 lg:col-start-2 lg:row-start-1 lg:row-span-2" id="search-bikes" data-default-days="30">
+        <%- include('../components/quote-builder', { fleet, quoteCopy: Object.assign({}, quoteCopy, { heading: content.quoteHeading }), pickerLabels, monthlyHref: '#longer', source: 'monthly', buildId }) %>
+      </div>
+
+      <div class="lg:col-start-1 lg:row-start-2 lg:self-start">
+        <p class="text-lg md:text-xl text-ink/60 leading-relaxed mb-8 max-w-xl"><%= content.intro %></p>
+        <div class="flex flex-wrap gap-3">
+          <% content.chips.forEach(function(chip) { %>
+          <div class="flex items-center gap-2 text-ink/70 bg-paper px-4 py-2.5 rounded-xl border border-black/5">
+            <svg class="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            <span class="font-bold text-sm"><%= chip %></span>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Rates -->
-<section class="py-16 bg-white">
-  <div class="container mx-auto px-6 max-w-4xl">
-    <h2 class="font-display text-2xl font-bold mb-2 text-ink text-center">Starting Monthly Rates</h2>
-    <p class="text-ink/50 text-center mb-10"><%= content.savingsNote %></p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <% fleet.forEach(function(bike) { %>
-      <div class="card overflow-hidden hover:shadow-xl transition-all">
-        <div class="aspect-[4/3] relative overflow-hidden bg-paper">
+<!-- 30-day prices per bike (live, build time) -->
+<section class="py-16 bg-paper border-y border-black/5">
+  <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+    <h2 class="font-display text-2xl md:text-3xl font-bold mb-2 text-ink text-center"><%= content.ratesHeading %></h2>
+    <p class="text-ink/50 text-center mb-10 max-w-2xl mx-auto text-sm"><%= content.ratesNote %></p>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+      <% fleet.forEach(function(bike) { const m = bike.price && bike.price[30]; %>
+      <div class="card overflow-hidden flex flex-col">
+        <div class="aspect-[4/3] relative overflow-hidden bg-white">
           <img src="<%= bike.image %>" alt="<%= bike.name %>" class="w-full h-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-          <span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-black px-2.5 py-1.5 rounded-lg shadow-lg"><%= bike.engine %></span>
+          <span class="absolute top-3 left-3 bg-ink text-white text-[10px] font-black px-2 py-1 rounded-lg"><%= bike.engine %></span>
         </div>
-        <div class="p-6">
-          <h3 class="font-display text-lg font-bold text-ink mb-1"><a href="/bikes/<%= bike.slug %>/" class="hover:text-primary transition-colors"><%= bike.name %></a></h3>
-          <p class="text-primary font-bold text-sm mb-4">From &#3647;<%= bike.monthly.toLocaleString() %>/month</p>
-          <a href="/#search-bikes" class="block text-center bg-ink text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-primary transition-colors">Check Availability</a>
+        <div class="p-4 sm:p-5 flex flex-col flex-1">
+          <h3 class="font-display text-base sm:text-lg font-bold text-ink mb-2"><a href="/bikes/<%= bike.slug %>/" class="hover:text-primary transition-colors"><%= bike.name %></a></h3>
+          <% if (m) { %>
+          <p class="text-2xl sm:text-3xl font-black text-ink leading-none">&#3647;<%= (m * 30).toLocaleString('en-US') %></p>
+          <p class="text-xs font-bold text-ink/40 mt-1 mb-4">30 days &middot; &#3647;<%= m %>/day</p>
+          <% } else { %>
+          <p class="text-sm font-bold text-ink/50 mb-4">Live price in the box above</p>
+          <% } %>
+          <a href="#search-bikes" data-pick="<%= bike.slug %>" class="mt-auto block text-center bg-primary text-white text-xs font-black uppercase tracking-widest px-3 py-3 rounded-xl hover:bg-ink transition-colors"><%= content.bookCta %></a>
         </div>
       </div>
       <% }); %>
     </div>
-    <p class="text-ink/40 text-xs text-center mt-8 max-w-xl mx-auto"><%= content.rateNote %></p>
   </div>
 </section>
 
 <!-- Benefits -->
-<section class="py-16 bg-paper">
-  <div class="container mx-auto px-6 max-w-4xl">
-    <h2 class="font-display text-2xl font-bold mb-8 text-ink text-center">Why Rent Monthly</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+    <h2 class="font-display text-2xl font-bold mb-8 text-ink text-center">Why rent for the month</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
       <% content.benefits.forEach(function(b) { %>
-      <div class="p-6 bg-white rounded-2xl border border-black/5 space-y-2">
-        <h4 class="font-bold text-ink"><%= b.title %></h4>
+      <div class="p-6 bg-paper rounded-2xl border border-black/5 space-y-2">
+        <h3 class="font-bold text-ink"><%= b.title %></h3>
         <p class="text-sm text-ink/50 leading-relaxed"><%= b.body %></p>
       </div>
       <% }); %>
@@ -52,21 +80,21 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="py-16 bg-white text-center">
-  <div class="container mx-auto px-6 max-w-xl">
-    <h2 class="font-display text-2xl font-bold mb-4 text-ink">Get a Monthly Quote</h2>
-    <p class="text-ink/60 mb-8">Message us your dates and preferred bike and we'll confirm availability and current pricing.</p>
+<!-- 31+ days: still quoted by staff -->
+<section id="longer" class="py-16 bg-ink text-white text-center scroll-mt-24">
+  <div class="container mx-auto px-4 sm:px-6 max-w-xl">
+    <h2 class="font-display text-2xl font-bold mb-4"><%= content.longerHeading %></h2>
+    <p class="text-white/60 mb-8"><%= content.longerBody %></p>
     <div class="flex flex-wrap justify-center gap-4">
       <a href="<%= site.contact.whatsapp %>" target="_blank" rel="noopener noreferrer" class="bg-whatsapp text-white px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase shadow-lg shadow-whatsapp/20 transition-all active:scale-95 inline-block">WhatsApp Us</a>
-      <a href="tel:<%= site.contact.phone.replace(/\s/g, '') %>" class="bg-ink text-white px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase shadow-lg transition-all active:scale-95 inline-block">Call <%= site.contact.phone %></a>
+      <a href="tel:<%= site.contact.phone.replace(/\s/g, '') %>" class="bg-white text-ink px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase shadow-lg transition-all active:scale-95 inline-block">Call <%= site.contact.phone %></a>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="py-16 bg-paper">
-  <div class="container mx-auto px-6 max-w-3xl">
+  <div class="container mx-auto px-4 sm:px-6 max-w-3xl">
     <h2 class="font-display text-2xl font-bold mb-8 text-ink">Frequently Asked Questions</h2>
     <% content.faqs.forEach(function(f) { %>
       <details class="border-b border-black/5 py-4">
@@ -81,8 +109,21 @@
 <section class="py-10 text-center bg-white border-t border-black/5">
   <a href="/#fleet" class="text-ink/50 text-sm hover:text-primary transition-colors">View all bikes</a>
   <span class="mx-3 text-ink/20">|</span>
+  <a href="/prices/" class="text-ink/50 text-sm hover:text-primary transition-colors">All prices</a>
+  <span class="mx-3 text-ink/20">|</span>
   <a href="/guides/nmax-vs-pcx/" class="text-ink/50 text-sm hover:text-primary transition-colors">Compare Nmax vs PCX</a>
 </section>
+
+<!-- "Book 30 days" buttons: select that bike in the price card, then scroll to it -->
+<script>
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('[data-pick]');
+  if (!a) return;
+  var tile = document.querySelector('.qb-bike[data-slug="' + a.getAttribute('data-pick') + '"]');
+  if (tile) tile.click();
+  if (typeof gtag === 'function') gtag('event', 'monthly_deal_pick', { bike: a.getAttribute('data-pick') });
+});
+</script>
 
 <!-- Structured data: FAQPage -->
 <script type="application/ld+json">

@@ -100,6 +100,7 @@ async function loadPrices() {
 
 let prices = null;
 let fleet = baseFleet;
+let fromMonth = null;
 
 // Area landing pages, Jomtien first (it predates the rest). Used for the pages
 // themselves, the "nearby areas" links and the homepage area strip.
@@ -113,6 +114,9 @@ async function build() {
   fleet = baseFleet.map((b) => ({ ...b, price: (prices && prices.byClass[b.priceClass]) || null }));
   const lowest = prices ? Math.min(...fleet.filter((b) => b.price).map((b) => b.price.from)) : null;
   if (prices) console.log(`Prices: ${JSON.stringify(prices.byClass)} (rentals from ${prices.startDate})`);
+  // Cheapest 30-day total across the fleet, for the winter monthly deal (page + homepage banner).
+  const monthTotals = fleet.filter((b) => b.price && b.price[30]).map((b) => b.price[30] * 30);
+  fromMonth = monthTotals.length ? Math.min(...monthTotals) : null;
 
   // Copy static SEO/GEO files (robots.txt, llms.txt) as-is.
   if (await fs.pathExists(publicDir)) {
@@ -122,7 +126,7 @@ async function build() {
   // Homepage (English + Thai).
   await renderPage({
     templateFile: "home.ejs",
-    templateData: { site, fleet, faqs, reviews, t: homeCopy.en, bikePages, bikeLang: "en", areaIndex },
+    templateData: { site, fleet, faqs, reviews, t: homeCopy.en, bikePages, bikeLang: "en", areaIndex, fromMonth },
     title: homeCopy.en.meta.title,
     description: lowest ? homeCopy.en.meta.description.replace("Book online", `From \u0E3F${lowest}/day. Book online`) : homeCopy.en.meta.description,
     urlPath: "/",
@@ -134,7 +138,7 @@ async function build() {
 
   await renderPage({
     templateFile: "home.ejs",
-    templateData: { site, fleet, faqs: homeCopy.th.faqs, reviews, t: homeCopy.th, bikePages, bikeLang: "th", areaIndex },
+    templateData: { site, fleet, faqs: homeCopy.th.faqs, reviews, t: homeCopy.th, bikePages, bikeLang: "th", areaIndex, fromMonth: null },
     title: homeCopy.th.meta.title,
     description: homeCopy.th.meta.description,
     urlPath: "/th/",
@@ -195,12 +199,13 @@ async function build() {
     });
   }
 
-  // Monthly rental landing page (English only - see bikePages.js comment).
+  // Monthly rental landing page / winter monthly deal (English only - see bikePages.js comment).
+  const monthly = monthlyContent(fromMonth);
   await renderPage({
     templateFile: "monthly-rental.ejs",
-    templateData: { site, fleet, content: monthlyRentalPage },
-    title: monthlyRentalPage.title,
-    description: monthlyRentalPage.description,
+    templateData: { site, fleet, content: monthly, quoteCopy: homeCopy.en.quote, pickerLabels: homeCopy.en.picker },
+    title: monthly.title,
+    description: monthly.description,
     urlPath: "/monthly-rental/",
     lang: "en",
     priority: "0.7",
@@ -315,6 +320,23 @@ ${sitemapUrls.join("\n")}
   await fs.outputFile(path.join(distDir, "sitemap.xml"), sitemap);
 
   console.log(`Build complete: ${sitemapUrls.length} pages, dist/sitemap.xml, dist/robots.txt, dist/llms.txt`);
+}
+
+// Monthly page copy with {from} filled in from live 30-day prices; falls back to
+// the *NoPrice variants when the pricing engine was unreachable at build time.
+function monthlyContent(from) {
+  const c = monthlyRentalPage;
+  const baht = from ? `\u0E3F${from.toLocaleString("en-US")}` : "";
+  const fill = (s) => s.replace(/\{from\}/g, baht);
+  return {
+    ...c,
+    title: from ? fill(c.title) : c.titleNoPrice,
+    description: from ? fill(c.description) : c.descriptionNoPrice,
+    h1: from ? fill(c.h1) : c.h1NoPrice,
+    faqs: c.faqs
+      .filter((f) => from || !f.a.includes("{from}"))
+      .map((f) => ({ q: f.q, a: fill(f.a) })),
+  };
 }
 
 function pricesFaqs(lowest) {

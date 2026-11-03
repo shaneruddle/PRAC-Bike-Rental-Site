@@ -270,37 +270,53 @@ export const comparisonGuide = {
   }
 };
 
-// Monthly-rental landing page. English only (language switcher is currently
-// disabled sitewide - see layout.ejs). Monthly prices are pulled from each
-// fleet entry's `monthly` field in site.js; shown as a starting-from rate
-// with a "confirm at contact" hedge since these figures haven't been
-// re-verified since the pricing/CTA redesign removed all visible pricing
-// sitewide (see claude/bike-site-dataforseo-quick-wins-aug-2026.md, Priority 3).
+// Monthly-rental landing page, run as the winter monthly deal (Nov 2026).
+// English only (the monthly page has no Thai version). 30-day prices come from
+// the live pricing engine at build time (fleet[].price[30], rebuilt nightly);
+// {from} in the copy is replaced with the cheapest 30-day total. 30-day rentals
+// book online through the instant-price card; 31+ days still goes to WhatsApp.
 export const monthlyRentalPage = {
-  title: "Monthly Motorbike Rental in Pattaya | Long-Term Scooter Hire",
-  description: "Renting a motorbike or scooter in Pattaya for a month or longer? See starting monthly rates for our fleet and get a current quote via WhatsApp or phone.",
-  h1: "Monthly Motorbike & Scooter Rental in Pattaya",
-  intro: "Staying in Pattaya for a month or longer? Renting by the month works out significantly cheaper than paying the daily rate for the same stretch of time, and you'll have the same bike for your whole trip - no re-booking, no waiting around at the office. Monthly rentals are available across our full fleet, subject to availability.",
-  savingsNote: "Renting monthly instead of daily works out to roughly 55-60% less over a full month, depending on the model.",
-  rateNote: "Rates shown are a starting point - contact us via WhatsApp or phone to confirm current availability and pricing for your dates.",
+  title: "Monthly Motorbike Rental Pattaya | Winter Deal from {from}",
+  titleNoPrice: "Monthly Motorbike Rental in Pattaya | Winter Monthly Deal",
+  description: "Winter monthly deal: rent a scooter in Pattaya for 30 days from {from}, helmets and insurance included. Yamaha GT 125, Nmax, Honda PCX and Aerox. Book online in a minute.",
+  descriptionNoPrice: "Winter monthly deal: rent a scooter in Pattaya for 30 days, helmets and insurance included. Yamaha GT 125, Nmax, Honda PCX and Aerox. Book online in a minute.",
+  eyebrow: "Winter monthly deal",
+  h1: "Your own scooter for the whole month, from {from}",
+  h1NoPrice: "Your own scooter for the whole month",
+  intro: "Here for the winter? Rent one bike for 30 days and keep it for your whole stay. No daily rates, no re-booking, no taxi queues. Pick a bike, check the price for your dates and book online.",
+  chips: ["30 days, one price", "Helmets + insurance included", "We don't keep your passport"],
+  quoteHeading: "Price your month",
+  ratesHeading: "30 days, all in",
+  ratesNote: "Live prices for 30-day rentals, updated daily. Same bike for the whole month, helmet and Po Lo Bo insurance included. 1,000 THB cash deposit, refunded when you bring the bike back.",
+  bookCta: "Book 30 days",
   benefits: [
-    { title: "Lower cost per day", body: "Monthly rates work out to a fraction of the daily rate over a full month." },
-    { title: "One bike for your whole stay", body: "No re-booking or swapping vehicles partway through your trip." },
-    { title: "Insurance & helmets included", body: "Every monthly rental includes the same compulsory government insurance (Po Lo Bo) and helmets as our daily rentals." },
-    { title: "Easy to extend", body: "Message us before your month is up and we'll sort out an extension if the bike's still available." }
+    { title: "Lowest price per day", body: "30 days is our cheapest rate per day, far less than renting by the day or the week." },
+    { title: "One bike for your whole stay", body: "Same bike from day one to day 30. No swapping, no re-booking, no waiting at the office." },
+    { title: "Helmets and insurance included", body: "Every rental includes helmets and the compulsory Po Lo Bo insurance, same as a daily rental." },
+    { title: "Serviced and looked after", body: "Breakdown? Call or WhatsApp us 9am to 5pm, every day of the year, and we sort out a technician or a replacement bike." }
   ],
+  longerHeading: "Staying longer than 30 days?",
+  longerBody: "Book the first 30 days online, or message us with your dates and we'll quote two or three months on the same bike.",
   faqs: [
     {
       q: "How much does a monthly motorbike rental cost in Pattaya?",
-      a: "Starting rates run from around 2,500 THB/month for the Yamaha GT 125 up to around 4,000 THB/month for our 150-155cc scooters (Nmax, PCX, Aerox), depending on the model, season and length of rental. Contact us via WhatsApp or phone for a current quote and to check availability for your dates."
+      a: "With us, 30 days currently starts from {from} for a Yamaha GT 125, with the Nmax, PCX and Aerox a little more. Prices on this page are live from our booking system and include helmets and Po Lo Bo insurance. Check your exact dates in the price box above."
+    },
+    {
+      q: "Can I book a monthly bike online?",
+      a: "Yes. Pick your bike and dates in the price box, then book. Rentals of up to 30 days book straight online. For longer stays, message us on WhatsApp for a quote."
     },
     {
       q: "What do I need to rent a bike for a month?",
-      a: "The same as any rental with us: your original passport, a valid driving license and a 1000 baht cash deposit."
+      a: "Your original passport and a valid driving licence to show at pickup - we look at your passport but don't keep it - plus a 1,000 baht cash deposit, refunded when you return the bike."
     },
     {
       q: "Is insurance included on monthly rentals?",
-      a: "Yes - every bike, whether rented daily or monthly, comes with the compulsory government insurance (Po Lo Bo), which covers basic medical costs."
+      a: "Yes - every bike, whether rented daily or monthly, comes with the compulsory government insurance (Po Lo Bo), which covers basic medical costs. It does not cover damage to the bike."
+    },
+    {
+      q: "Where do I pick up the bike?",
+      a: "From our office in Pratumnak, open 9am to 5pm every day. We don't deliver bikes, so pickup and return are at the office."
     }
   ]
 };

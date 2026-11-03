@@ -172,9 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
             render();
         });
 
-        // Default selection: tomorrow → +3 days
+        // Default selection: tomorrow → +3 days (or the wrapper's data-default-days, e.g. 30 on the monthly page)
+        const defaultDays = +(bookingForm.closest('[data-default-days]')?.dataset.defaultDays) || 3;
         const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate()+1);
-        const plusThree = new Date(today); plusThree.setDate(plusThree.getDate()+4);
+        const plusThree = new Date(today); plusThree.setDate(plusThree.getDate()+1+defaultDays);
         committed.start = tomorrow; committed.end = plusThree;
         commitSelection();
 
