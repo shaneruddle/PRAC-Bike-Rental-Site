@@ -62,8 +62,12 @@ document.addEventListener('click', function (e) {
 <%- JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "https://" + site.domain + "/#business",
   "name": site.name,
+  "description": "Motorbike and scooter rental in Pattaya since 2009: Yamaha and Honda automatics, helmets and compulsory insurance included, passport shown but not kept.",
+  "foundingDate": "2009",
   "image": [site.logo.square, site.logo.main],
+  "logo": site.logo.square,
   "telephone": site.contact.phone,
   "email": site.contact.email,
   "address": {
@@ -80,8 +84,13 @@ document.addEventListener('click', function (e) {
   ],
   "geo": { "@type": "GeoCoordinates", "latitude": site.office.lat, "longitude": site.office.lng },
   "hasMap": site.office.googleMapsUrl,
+  "sameAs": [site.office.googleMapsUrl],
   "url": "https://" + site.domain + "/",
-  "openingHours": "Mo-Su 09:00-17:00"
+  "openingHours": "Mo-Su 09:00-17:00",
+  "currenciesAccepted": "THB",
+  "paymentAccepted": "Cash, Bank transfer, Credit card",
+  ...(typeof priceRange !== "undefined" && priceRange ? { "priceRange": priceRange } : {}),
+  "parentOrganization": { "@type": "Organization", "name": "Pattaya Rent a Car", "url": "https://www.pattayarentacar.com/" }
 }) %>
 </script>
 </head>
