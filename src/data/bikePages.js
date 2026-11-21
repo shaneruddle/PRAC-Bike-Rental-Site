@@ -217,8 +217,8 @@ export const bikePages = {
 export const comparisonGuide = {
   slug: "nmax-vs-pcx",
   en: {
-    title: "Yamaha Nmax vs Honda PCX: Which Scooter Should You Rent in Pattaya?",
-    description: "Yamaha Nmax vs Honda PCX - both 150-155cc automatics. We compare engine, comfort and styling to help you choose the right scooter to rent in Pattaya.",
+    title: "Nmax vs PCX: Which Scooter Is Better to Rent? Honest Comparison",
+    description: "Yamaha Nmax 155 vs Honda PCX 150: engine, comfort, storage and riding two-up compared, with our verdict from renting both in Pattaya since 2009.",
     h1: "Yamaha Nmax vs Honda PCX: Which One Should You Rent?",
     intro: "The Nmax and PCX are our two most popular scooters, and for good reason - they're both comfortable, capable 150-155cc automatics in the same class. If you're trying to decide between them, here's an honest, practical comparison.",
     table: {
@@ -243,7 +243,7 @@ export const comparisonGuide = {
     ]
   },
   th: {
-    title: "Yamaha Nmax vs Honda PCX: เช่าสกู๊ตเตอร์รุ่นไหนดีในพัทยา",
+    title: "Nmax กับ PCX รุ่นไหนดี? เปรียบเทียบก่อนเช่าในพัทยา",
     description: "เปรียบเทียบ Yamaha Nmax กับ Honda PCX ทั้งเครื่องยนต์ ความสบาย และดีไซน์ ช่วยให้คุณเลือกเช่าสกู๊ตเตอร์ที่ใช่ในพัทยา",
     h1: "Yamaha Nmax vs Honda PCX: เลือกเช่ารุ่นไหนดี?",
     intro: "Nmax และ PCX เป็นสกู๊ตเตอร์ยอดนิยมที่สุดสองรุ่นของเรา ด้วยเหตุผลที่ดี ทั้งคู่เป็นเกียร์ออโต้ขนาด 150-155cc ที่นั่งสบายและมีสมรรถนะดี อยู่ในคลาสเดียวกัน หากคุณกำลังตัดสินใจระหว่างสองรุ่นนี้ นี่คือการเปรียบเทียบที่ตรงไปตรงมาและใช้งานได้จริง",
@@ -324,8 +324,8 @@ export const monthlyRentalPage = {
 
 export const insuranceGuide = {
   slug: "motorbike-insurance-in-thailand",
-  title: "Motorbike Insurance in Thailand: What's Actually Included",
-  description: "What does motorbike insurance in Thailand actually cover? A clear, honest breakdown of Po Lo Bo compulsory insurance, what it doesn't cover, and what that means when you rent a scooter in Pattaya.",
+  title: "Motorbike Insurance in Thailand: Por Ror Bor Explained",
+  description: "Por Ror Bor (Po Lo Bo) is Thailand's compulsory motorbike insurance. What it covers, what it doesn't (damage to the bike), and how to get proper cover when you rent a scooter.",
   h1: "Motorbike Insurance in Thailand: What's Actually Included",
   intro: "Motorbike insurance in Thailand is one of those topics where what people assume they have and what they actually have can be very different. Here's a straightforward breakdown of what's really covered when you rent a scooter in Pattaya - and what isn't.",
   table: {

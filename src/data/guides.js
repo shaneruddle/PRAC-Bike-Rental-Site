@@ -8,9 +8,9 @@
 export const licenceGuide = {
   slug: "motorbike-licence-thailand",
   path: "/guides/motorbike-licence-thailand/",
-  title: "Motorbike Licence in Thailand: What Tourists Need to Ride",
+  title: "Thailand Motorbike Licence & IDP Rules for Tourists",
   description:
-    "Do you need a motorbike licence or International Driving Permit to ride a scooter in Thailand? What the law expects, helmet rules, fines and what we ask for at pickup in Pattaya.",
+    "Can you ride a scooter in Thailand on a car licence? No: you need a licence with a motorcycle class plus an IDP that shows it. Checkpoint fines, helmet rules and insurance explained.",
   eyebrow: "Rider Guide",
   breadcrumb: "Motorbike licence in Thailand",
   h1: "Motorbike Licence in Thailand: What You Need to Ride a Scooter",
