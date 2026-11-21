@@ -69,6 +69,7 @@ async function renderPage({
       lang,
       altHref,
       altLang,
+      priceRange,
     },
     { root: templatesDir }
   );
@@ -99,6 +100,8 @@ async function loadPrices() {
 }
 
 let prices = null;
+// Business price range for LocalBusiness structured data, e.g. "\u0E3F100-\u0E3F300 per day".
+let priceRange = null;
 let fleet = baseFleet;
 let fromMonth = null;
 
@@ -114,6 +117,8 @@ async function build() {
   fleet = baseFleet.map((b) => ({ ...b, price: (prices && prices.byClass[b.priceClass]) || null }));
   const lowest = prices ? Math.min(...fleet.filter((b) => b.price).map((b) => b.price.from)) : null;
   if (prices) console.log(`Prices: ${JSON.stringify(prices.byClass)} (rentals from ${prices.startDate})`);
+  const dayRates = fleet.filter((b) => b.price && b.price[3]).map((b) => b.price[3]);
+  priceRange = lowest && dayRates.length ? `\u0E3F${lowest}-\u0E3F${Math.max(...dayRates)} per day` : null;
   // Cheapest 30-day total across the fleet, for the winter monthly deal (page + homepage banner).
   const monthTotals = fleet.filter((b) => b.price && b.price[30]).map((b) => b.price[30] * 30);
   fromMonth = monthTotals.length ? Math.min(...monthTotals) : null;
