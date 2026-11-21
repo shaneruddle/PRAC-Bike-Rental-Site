@@ -1,0 +1,21 @@
+<!-- Article structured data for guides: who wrote it, when it was last reviewed, parent company. -->
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": content.h1,
+  "description": content.quickAnswer,
+  "inLanguage": lang,
+  "dateModified": content.updated,
+  "mainEntityOfPage": "https://" + site.domain + urlPath,
+  "image": site.logo.main,
+  "author": { "@type": "Organization", "name": site.name, "url": "https://" + site.domain + "/" },
+  "publisher": {
+    "@type": "Organization",
+    "name": site.name,
+    "url": "https://" + site.domain + "/",
+    "logo": { "@type": "ImageObject", "url": site.logo.square },
+    "parentOrganization": { "@type": "Organization", "name": "Pattaya Rent a Car", "url": "https://www.pattayarentacar.com/" }
+  }
+}) %>
+</script>

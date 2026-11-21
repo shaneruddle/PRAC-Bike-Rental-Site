@@ -220,6 +220,8 @@ export const comparisonGuide = {
     title: "Yamaha Nmax vs Honda PCX: Which Scooter Should You Rent in Pattaya?",
     description: "Yamaha Nmax vs Honda PCX - both 150-155cc automatics. We compare engine, comfort and styling to help you choose the right scooter to rent in Pattaya.",
     h1: "Yamaha Nmax vs Honda PCX: Which One Should You Rent?",
+    quickAnswer: "Both are 150-155cc automatic scooters that carry two adults comfortably, so there's no wrong choice. Pick the Honda PCX for the smoothest ride and the roomiest floorboard; pick the Yamaha Nmax for a slightly sportier feel. The 5cc engine difference isn't noticeable in everyday riding, so availability for your dates often decides it.",
+    updated: "2026-11-21",
     intro: "The Nmax and PCX are our two most popular scooters, and for good reason - they're both comfortable, capable 150-155cc automatics in the same class. If you're trying to decide between them, here's an honest, practical comparison.",
     table: {
       headers: ["", "Yamaha Nmax", "Honda PCX"],
@@ -246,6 +248,8 @@ export const comparisonGuide = {
     title: "Yamaha Nmax vs Honda PCX: เช่าสกู๊ตเตอร์รุ่นไหนดีในพัทยา",
     description: "เปรียบเทียบ Yamaha Nmax กับ Honda PCX ทั้งเครื่องยนต์ ความสบาย และดีไซน์ ช่วยให้คุณเลือกเช่าสกู๊ตเตอร์ที่ใช่ในพัทยา",
     h1: "Yamaha Nmax vs Honda PCX: เลือกเช่ารุ่นไหนดี?",
+    quickAnswer: "ทั้งสองรุ่นเป็นสกู๊ตเตอร์เกียร์ออโต้ 150-155cc ที่ซ้อนผู้ใหญ่สองคนได้สบาย จึงไม่มีตัวเลือกไหนผิด เลือก Honda PCX หากต้องการการขับขี่ที่นุ่มนวลที่สุดและพื้นวางเท้ากว้างที่สุด เลือก Yamaha Nmax หากต้องการความรู้สึกสปอร์ตขึ้นอีกนิด เครื่องยนต์ต่างกันเพียง 5cc ซึ่งแทบไม่รู้สึกในการขับขี่ประจำวัน ในทางปฏิบัติมักขึ้นอยู่กับว่ารุ่นไหนว่างในวันที่คุณต้องการ",
+    updated: "2026-11-21",
     intro: "Nmax และ PCX เป็นสกู๊ตเตอร์ยอดนิยมที่สุดสองรุ่นของเรา ด้วยเหตุผลที่ดี ทั้งคู่เป็นเกียร์ออโต้ขนาด 150-155cc ที่นั่งสบายและมีสมรรถนะดี อยู่ในคลาสเดียวกัน หากคุณกำลังตัดสินใจระหว่างสองรุ่นนี้ นี่คือการเปรียบเทียบที่ตรงไปตรงมาและใช้งานได้จริง",
     table: {
       headers: ["", "Yamaha Nmax", "Honda PCX"],
@@ -327,6 +331,8 @@ export const insuranceGuide = {
   title: "Motorbike Insurance in Thailand: What's Actually Included",
   description: "What does motorbike insurance in Thailand actually cover? A clear, honest breakdown of Po Lo Bo compulsory insurance, what it doesn't cover, and what that means when you rent a scooter in Pattaya.",
   h1: "Motorbike Insurance in Thailand: What's Actually Included",
+  quickAnswer: "Every rental scooter in Thailand carries Por Ror Bor (also written Po Lo Bo), the compulsory government insurance. It pays basic medical costs for people injured in an accident, up to set limits. It does not cover damage to the bike, and it covers little of the rider's own injuries. For more cover you need travel insurance that includes motorbike riding (most require a licence valid for motorcycles) or a personal accident policy.",
+  updated: "2026-11-21",
   intro: "Motorbike insurance in Thailand is one of those topics where what people assume they have and what they actually have can be very different. Here's a straightforward breakdown of what's really covered when you rent a scooter in Pattaya - and what isn't.",
   table: {
     headers: ["", "Compulsory (Po Lo Bo)", "Voluntary cover"],
