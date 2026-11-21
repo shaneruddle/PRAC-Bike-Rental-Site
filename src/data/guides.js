@@ -13,6 +13,9 @@ export const licenceGuide = {
     "Can you ride a scooter in Thailand on a car licence? No: you need a licence with a motorcycle class plus an IDP that shows it. Checkpoint fines, helmet rules and insurance explained.",
   eyebrow: "Rider Guide",
   breadcrumb: "Motorbike licence in Thailand",
+  quickAnswer:
+    "Yes, you need a licence that covers motorcycles. For most tourists that means your home driving licence with a motorcycle category plus an International Driving Permit that also shows the motorcycle class (usually \"A\"). A car-only licence or car-only IDP does not cover a scooter, even a 125cc automatic. Riding without one risks a fine at police checkpoints, and many travel insurers won't pay out. Rider and passenger must both wear a helmet.",
+  updated: "2026-11-21",
   h1: "Motorbike Licence in Thailand: What You Need to Ride a Scooter",
   intro:
     "Renting a scooter in Pattaya is easy. Riding it legally takes a little more thought. Here's what Thai law expects from foreign riders, what police checkpoints look for, and what we ask for when you collect a bike from us.",

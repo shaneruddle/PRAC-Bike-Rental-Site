@@ -1,3 +1,4 @@
+<% if (content.updated) { %><%- include('../components/article-schema', { site, content, lang, urlPath }) %><% } %>
 <!-- Generic article page (licence guide, area pages). Content: src/data/guides.js, src/data/areas.js -->
 <!-- Breadcrumb -->
 <div class="container mx-auto px-6 pt-8 text-xs text-ink/40">
@@ -13,6 +14,7 @@
       <% if (content.eyebrow) { %><span class="eyebrow"><%= content.eyebrow %></span><% } %>
       <h1 class="font-display text-3xl md:text-4xl font-bold mb-4 text-ink"><%= content.h1 %></h1>
       <p class="text-ink/60 text-lg"><%= content.intro %></p>
+      <% if (content.quickAnswer) { %><%- include('../components/quick-answer', { label: lang === 'th' ? 'คำตอบสั้นๆ' : 'Quick answer', text: content.quickAnswer }) %><% } %>
     </div>
     <div id="search-bikes" class="scroll-mt-24">
       <% if (area) { %>
